@@ -19,20 +19,9 @@ struct FolderSidebarView: View {
 
     var body: some View {
         List(selection: $selectedFolderId) {
-            Section {
-                WorkspaceStatusCard(
-                    workspace: workspace,
-                    errorMessage: errorMessage,
-                    selectWorkspace: selectWorkspace
-                )
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
-            }
-
             Section("Library") {
-                Label("All Documents", systemImage: "tray.full")
+                SidebarLibraryRow(title: "All Documents", systemImage: "tray.full", isSelected: selectedFolderId == nil)
                     .tag(nil as UUID?)
-                    .accessibilityAddTraits(selectedFolderId == nil ? .isSelected : [])
             }
 
             Section("Folders") {
@@ -70,6 +59,16 @@ struct FolderSidebarView: View {
         .listStyle(.sidebar)
         .scrollContentBackground(.hidden)
         .background(.thinMaterial)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            WorkspaceStatusCard(
+                workspace: workspace,
+                errorMessage: errorMessage,
+                selectWorkspace: selectWorkspace,
+                isCompact: true
+            )
+            .padding(12)
+            .background(.bar)
+        }
         .toolbar {
             ToolbarItem {
                 Button {
@@ -77,8 +76,22 @@ struct FolderSidebarView: View {
                 } label: {
                     Label("New Folder", systemImage: "folder.badge.plus")
                 }
+                .tint(MarkFlowTheme.accent)
             }
         }
+    }
+}
+
+private struct SidebarLibraryRow: View {
+    let title: String
+    let systemImage: String
+    let isSelected: Bool
+
+    var body: some View {
+        Label(title, systemImage: systemImage)
+            .symbolRenderingMode(.hierarchical)
+            .foregroundStyle(isSelected ? MarkFlowTheme.accent : .primary)
+            .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 
@@ -92,6 +105,8 @@ private struct FolderRowView: View {
                 .frame(width: CGFloat(item.depth) * 14)
                 .accessibilityHidden(true)
             Label(item.folder.name, systemImage: "folder")
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(isSelected ? MarkFlowTheme.accent : .primary)
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(isSelected ? .isSelected : [])

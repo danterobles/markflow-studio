@@ -17,39 +17,48 @@ struct DocumentDetailView: View {
     var body: some View {
         Group {
             if let document {
-                VStack(alignment: .leading, spacing: 24) {
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            TextField("Document title", text: $draftTitle)
-                                .font(.largeTitle.bold())
-                                .textFieldStyle(.plain)
-                                .onSubmit {
-                                    actions.renameDocument(document, draftTitle)
+                ZStack {
+                    AppBackgroundView()
+
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 24) {
+                            HStack(alignment: .top) {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    TextField("Document title", text: $draftTitle)
+                                        .font(.largeTitle.bold())
+                                        .textFieldStyle(.plain)
+                                        .onSubmit {
+                                            actions.renameDocument(document, draftTitle)
+                                        }
+
+                                    Text("Updated \(document.updatedAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened))")
+                                        .font(.callout)
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                InspectorStatusView(document: document, brokenLinkCount: brokenLinkCount)
+                            }
+
+                            MarkdownEditorView(content: $draftContent)
+                                .onChange(of: draftContent) { _, newValue in
+                                    actions.updateDocumentContent(document, newValue)
                                 }
 
-                            Text("Updated \(document.updatedAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened))")
-                                .font(.callout)
-                                .foregroundStyle(.secondary)
+                            LinkInspectorView(
+                                document: document,
+                                documents: documents,
+                                links: links,
+                                actions: actions
+                            )
                         }
-                        Spacer()
-                        InspectorStatusView(document: document, brokenLinkCount: brokenLinkCount)
+                        .frame(maxWidth: MarkFlowTheme.editorMaxWidth, alignment: .leading)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 28)
+                        .frame(maxWidth: .infinity)
                     }
-
-                    MarkdownEditorView(content: $draftContent)
-                        .onChange(of: draftContent) { _, newValue in
-                            actions.updateDocumentContent(document, newValue)
-                        }
-
-                    LinkInspectorView(
-                        document: document,
-                        documents: documents,
-                        links: links,
-                        actions: actions
-                    )
                 }
-                .padding()
-                .background(AppBackgroundView())
                 .navigationTitle(document.title)
+                .tint(MarkFlowTheme.accent)
                 .toolbar {
                     ToolbarItemGroup {
                         Menu {
@@ -100,8 +109,13 @@ struct DocumentDetailView: View {
                     }
                 }
             } else {
-                ContentUnavailableView("Select a Document", systemImage: "doc.text.magnifyingglass")
-                    .background(AppBackgroundView())
+                ZStack {
+                    AppBackgroundView()
+                    ContentUnavailableView("Select a Document", systemImage: "doc.text.magnifyingglass", description: Text("Choose a note from the list or create a new one to start editing."))
+                        .padding(32)
+                        .glassPanel(cornerRadius: MarkFlowTheme.panelRadius)
+                        .padding(24)
+                }
             }
         }
     }

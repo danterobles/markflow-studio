@@ -23,11 +23,17 @@ struct MarkdownEditorView: View {
                 Spacer()
             }
 
-            MarkdownFormattingToolbar { helper in
-                insert(helper.snippet)
-            }
+            ZStack(alignment: .bottom) {
+                editorBody
 
-            editorBody
+                if mode != .preview {
+                    MarkdownFormattingToolbar { helper in
+                        insert(helper.snippet)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
+                }
+            }
         }
     }
 
@@ -93,13 +99,13 @@ private struct MarkdownFormattingToolbar: View {
                     } label: {
                         Label(helper.title, systemImage: helper.systemImage)
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.borderless)
                     .controlSize(.small)
                     .accessibilityHint("Insert Markdown for \(helper.title.lowercased())")
                 }
             }
-            .padding(.vertical, 2)
         }
+        .glassCapsule()
         .accessibilityLabel("Markdown formatting tools")
     }
 }
@@ -178,15 +184,26 @@ private struct MarkdownTextEditor: View {
     @FocusState private var isFocused: Bool
 
     var body: some View {
-        TextEditor(text: $content)
-            .font(.system(.body, design: .monospaced))
-            .lineSpacing(6)
-            .focused($isFocused)
-            .scrollContentBackground(.hidden)
-            .frame(minHeight: 420)
-            .padding(18)
-            .glassPanel(cornerRadius: 28)
-            .accessibilityLabel("Markdown source editor")
+        ZStack(alignment: .topLeading) {
+            TextEditor(text: $content)
+                .font(MarkFlowTheme.editorFont)
+                .lineSpacing(6)
+                .focused($isFocused)
+                .scrollContentBackground(.hidden)
+                .padding(18)
+
+            if content.isEmpty {
+                Text("Start writing Markdown...")
+                    .font(MarkFlowTheme.fallbackEditorFont)
+                    .foregroundStyle(.tertiary)
+                    .padding(.horizontal, 23)
+                    .padding(.vertical, 26)
+                    .allowsHitTesting(false)
+            }
+        }
+        .frame(minHeight: 420)
+        .glassPanel(cornerRadius: 28)
+        .accessibilityLabel("Markdown source editor")
     }
 }
 

@@ -14,14 +14,13 @@ struct FloatingToolbarView: View {
                 Label("New", systemImage: "plus")
             }
             .buttonStyle(.borderedProminent)
+            .tint(MarkFlowTheme.accent)
 
             Label("Autosave ready", systemImage: "checkmark.circle.fill")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 10)
-        .glassPanel(cornerRadius: 18)
+        .glassCapsule()
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Floating toolbar")
     }

@@ -25,28 +25,47 @@ struct DocumentCardView: View {
                 }
             }
 
-            Text(document.content.isEmpty ? "No content yet." : document.content)
-                .font(.callout)
+            Text(previewText)
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
-                .lineLimit(3)
+                .lineLimit(2)
 
-            HStack(spacing: 10) {
-                Label("\(document.wordCount) words", systemImage: "text.word.spacing")
-                Text(document.updatedAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened))
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    MetadataPill(title: "\(document.wordCount) words", systemImage: "text.word.spacing")
+                    MetadataPill(title: updatedDateText, systemImage: "clock")
+                    if brokenLinkCount > 0 {
+                        MetadataPill(title: "\(brokenLinkCount) broken", systemImage: "link.badge.plus", tint: .orange)
+                    }
+                }
             }
-            .font(.caption)
-            .foregroundStyle(.tertiary)
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .glassPanel(cornerRadius: 20)
-        .overlay(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(isSelected ? Color.blue.opacity(0.55) : Color.clear)
-                .frame(width: 4)
-                .padding(.vertical, 10)
-        }
+        .noteCardStyle(isSelected: isSelected)
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+
+    private var previewText: String {
+        let trimmedContent = document.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmedContent.isEmpty ? "No content yet." : trimmedContent
+    }
+
+    private var updatedDateText: String {
+        document.updatedAt.formatted(Date.FormatStyle(date: .abbreviated, time: .omitted))
+    }
+}
+
+private struct MetadataPill: View {
+    let title: String
+    let systemImage: String
+    var tint: Color = .secondary
+
+    var body: some View {
+        Label(title, systemImage: systemImage)
+            .font(.caption2.weight(.medium))
+            .foregroundStyle(tint)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Color.secondary.opacity(0.08), in: Capsule(style: .continuous))
     }
 }

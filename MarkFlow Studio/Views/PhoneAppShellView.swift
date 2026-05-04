@@ -79,6 +79,7 @@ struct PhoneAppShellView: View {
             .navigationTitle("MarkFlow")
             .scrollContentBackground(.hidden)
             .background(AppBackgroundView())
+            .tint(MarkFlowTheme.accent)
             .toolbar {
                 ToolbarItem {
                     Button {
@@ -148,6 +149,9 @@ private struct DocumentStackView: View {
                     systemImage: searchText.isEmpty ? "doc.text" : "magnifyingglass",
                     description: Text(searchText.isEmpty ? "Create a document to start writing Markdown." : "Try a different title or content search.")
                 )
+                .padding(28)
+                .glassPanel(cornerRadius: MarkFlowTheme.panelRadius)
+                .padding(24)
             } else {
                 List {
                     ForEach(visibleDocuments) { document in
@@ -201,6 +205,8 @@ private struct DocumentStackView: View {
                 }
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
+                .contentMargins(.vertical, 12, for: .scrollContent)
+                .contentMargins(.horizontal, 10, for: .scrollContent)
             }
 
             FloatingToolbarView {
@@ -211,6 +217,7 @@ private struct DocumentStackView: View {
         .background(AppBackgroundView())
         .navigationTitle("Documents")
         .searchable(text: $searchText, prompt: "Search title or content")
+        .tint(MarkFlowTheme.accent)
         .toolbar {
             ToolbarItem {
                 Button {

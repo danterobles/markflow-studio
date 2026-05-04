@@ -105,3 +105,15 @@
 - Added export actions to document detail menus and folder context menus on regular and compact layouts.
 - Verified the updated app builds successfully for macOS.
 - Verified the updated app builds successfully for iOS Simulator using `iPhone 17`.
+
+### UI/UX Redesign Pass
+
+- Added a reusable `MarkFlowTheme` with shared accent color, spacing, corner radii, editor width, and adaptive background color.
+- Added reusable card and glass capsule modifiers for consistent glassmorphism surfaces, hover feedback, and spring animations.
+- Moved the desktop workspace selector into a fixed sidebar footer using `safeAreaInset` and reduced workspace-change visual noise with a compact menu.
+- Refined document rows into note-style cards with stronger title hierarchy, two-line previews, metadata pills, accent selection state, and hover affordance.
+- Centered the document editor in an 800-point reading column with improved empty states and a calmer layered background.
+- Updated the Markdown editor to use a monospaced editor font, line spacing, placeholder text, and a floating formatting toolbar with ultra-thin material.
+- Applied the refreshed empty states and accent tint across regular and compact layouts.
+- Verified the redesigned app builds successfully for macOS.
+- Verified the redesigned app builds successfully for iOS Simulator using `iPhone 17`.
