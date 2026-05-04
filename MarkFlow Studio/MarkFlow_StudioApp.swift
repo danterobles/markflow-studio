@@ -12,7 +12,10 @@ import SwiftData
 struct MarkFlow_StudioApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            MarkdownDocument.self,
+            MarkdownFolder.self,
+            MarkdownLink.self,
+            WorkspaceSettings.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
