@@ -28,7 +28,7 @@ struct MarkFlow_StudioApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootAppView()
         }
         .modelContainer(sharedModelContainer)
     }

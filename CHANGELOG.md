@@ -133,3 +133,12 @@
 - Removed the extra simultaneous tap gesture from iPhone document rows and now synchronize selected document state when the route destination appears.
 - Verified the fix builds successfully for macOS.
 - Verified the fix builds successfully for iOS Simulator using `iPhone 17`.
+
+### Splash Screen
+
+- Added a `RootAppView` that presents a startup splash before loading the main app UI.
+- Added `SplashScreenView` using the `bg_app` background asset and `ico_app` icon asset.
+- Added a 2.5-second launch presentation with smooth background motion, icon scale/glow, title reveal, and markdown-inspired line accents.
+- Added reduced-motion handling so the splash remains polished without unnecessary movement when accessibility settings request it.
+- Verified the splash implementation builds successfully for macOS.
+- Verified the splash implementation builds successfully for iOS Simulator using `iPhone 17`.
