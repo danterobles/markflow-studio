@@ -15,13 +15,14 @@ struct PhoneAppShellView: View {
     @Binding var selectedDocumentId: UUID?
     let actions: DocumentActionContext
     let folderActions: FolderActionContext
+    @State private var path: [PhoneRoute] = []
 
     private var folderTreeItems: [FolderTreeItem] {
         FolderService.flattenedFolders(from: folders)
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section {
                     WorkspaceStatusCard(
@@ -95,21 +96,25 @@ struct PhoneAppShellView: View {
                     DocumentStackView(
                         documents: documents(for: folderId),
                         links: links,
+                        folderId: folderId,
                         selectedDocumentId: $selectedDocumentId,
+                        path: $path,
                         actions: actions
                     )
                     .onAppear {
                         selectedFolderId = folderId
                     }
                 case .document(let documentId):
-                    let visibleDocumentId = selectedDocumentId ?? documentId
                     DocumentDetailView(
-                        document: documents.first { $0.id == visibleDocumentId },
+                        document: documents.first { $0.id == documentId },
                         documents: documents,
                         links: links,
-                        brokenLinkCount: brokenLinkCount(for: visibleDocumentId),
+                        brokenLinkCount: brokenLinkCount(for: documentId),
                         actions: actions
                     )
+                    .onAppear {
+                        selectedDocumentId = documentId
+                    }
                 }
             }
         }
@@ -133,7 +138,9 @@ private enum PhoneRoute: Hashable {
 private struct DocumentStackView: View {
     let documents: [MarkdownDocument]
     let links: [MarkdownLink]
+    let folderId: UUID?
     @Binding var selectedDocumentId: UUID?
+    @Binding var path: [PhoneRoute]
     let actions: DocumentActionContext
     @State private var searchText = ""
 
@@ -162,9 +169,6 @@ private struct DocumentStackView: View {
                                 brokenLinkCount: brokenLinkCount(for: document)
                             )
                         }
-                        .simultaneousGesture(TapGesture().onEnded {
-                            selectedDocumentId = document.id
-                        })
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
                         .swipeActions(edge: .trailing) {
@@ -210,7 +214,7 @@ private struct DocumentStackView: View {
             }
 
             FloatingToolbarView {
-                actions.addDocument(nil)
+                addDocumentAndOpen()
             }
             .padding()
         }
@@ -221,7 +225,7 @@ private struct DocumentStackView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    actions.addDocument(nil)
+                    addDocumentAndOpen()
                 } label: {
                     Label("Add Document", systemImage: "plus")
                 }
@@ -231,5 +235,13 @@ private struct DocumentStackView: View {
 
     private func brokenLinkCount(for document: MarkdownDocument) -> Int {
         links.filter { $0.sourceDocumentId == document.id && $0.isBroken }.count
+    }
+
+    private func addDocumentAndOpen() {
+        let previousDocumentId = selectedDocumentId
+        actions.addDocument(folderId)
+
+        guard let newDocumentId = selectedDocumentId, newDocumentId != previousDocumentId else { return }
+        path.append(.document(newDocumentId))
     }
 }

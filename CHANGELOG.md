@@ -117,3 +117,19 @@
 - Applied the refreshed empty states and accent tint across regular and compact layouts.
 - Verified the redesigned app builds successfully for macOS.
 - Verified the redesigned app builds successfully for iOS Simulator using `iPhone 17`.
+
+### iPhone Document Creation Fix
+
+- Added explicit `NavigationStack` path handling for the compact iPhone flow so newly created documents open directly in the editor.
+- Passed the current folder into iPhone document creation so new notes stay scoped to the visible folder.
+- Removed ambiguity in the iPhone document destination by resolving the document from the route ID instead of preferring global selection state.
+- Verified the fix builds successfully for macOS.
+- Verified the fix builds successfully for iOS Simulator using `iPhone 17`.
+
+### iPhone Existing Document Editing Fix
+
+- Updated the compact document detail layout to avoid embedding the Markdown `TextEditor` inside an outer `ScrollView`, which could block focus and editing gestures on iPhone.
+- Kept the wider macOS and iPad detail layout scrollable while giving iPhone a fixed-height editor-first layout.
+- Removed the extra simultaneous tap gesture from iPhone document rows and now synchronize selected document state when the route destination appears.
+- Verified the fix builds successfully for macOS.
+- Verified the fix builds successfully for iOS Simulator using `iPhone 17`.

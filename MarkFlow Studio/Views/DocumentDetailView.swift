@@ -6,6 +6,7 @@
 import SwiftUI
 
 struct DocumentDetailView: View {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     let document: MarkdownDocument?
     let documents: [MarkdownDocument]
     let links: [MarkdownLink]
@@ -20,42 +21,7 @@ struct DocumentDetailView: View {
                 ZStack {
                     AppBackgroundView()
 
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 24) {
-                            HStack(alignment: .top) {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    TextField("Document title", text: $draftTitle)
-                                        .font(.largeTitle.bold())
-                                        .textFieldStyle(.plain)
-                                        .onSubmit {
-                                            actions.renameDocument(document, draftTitle)
-                                        }
-
-                                    Text("Updated \(document.updatedAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened))")
-                                        .font(.callout)
-                                        .foregroundStyle(.secondary)
-                                }
-                                Spacer()
-                                InspectorStatusView(document: document, brokenLinkCount: brokenLinkCount)
-                            }
-
-                            MarkdownEditorView(content: $draftContent)
-                                .onChange(of: draftContent) { _, newValue in
-                                    actions.updateDocumentContent(document, newValue)
-                                }
-
-                            LinkInspectorView(
-                                document: document,
-                                documents: documents,
-                                links: links,
-                                actions: actions
-                            )
-                        }
-                        .frame(maxWidth: MarkFlowTheme.editorMaxWidth, alignment: .leading)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 28)
-                        .frame(maxWidth: .infinity)
-                    }
+                    detailContent(for: document)
                 }
                 .navigationTitle(document.title)
                 .tint(MarkFlowTheme.accent)
@@ -123,6 +89,60 @@ struct DocumentDetailView: View {
     private func syncDrafts(with document: MarkdownDocument) {
         draftTitle = document.title
         draftContent = document.content
+    }
+
+    @ViewBuilder
+    private func detailContent(for document: MarkdownDocument) -> some View {
+        if horizontalSizeClass == .compact {
+            detailStack(for: document)
+                .frame(maxWidth: MarkFlowTheme.editorMaxWidth, alignment: .leading)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 18)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        } else {
+            ScrollView {
+                detailStack(for: document)
+                    .frame(maxWidth: MarkFlowTheme.editorMaxWidth, alignment: .leading)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 28)
+                    .frame(maxWidth: .infinity)
+            }
+        }
+    }
+
+    private func detailStack(for document: MarkdownDocument) -> some View {
+        VStack(alignment: .leading, spacing: horizontalSizeClass == .compact ? 18 : 24) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 8) {
+                    TextField("Document title", text: $draftTitle)
+                        .font(horizontalSizeClass == .compact ? .title.bold() : .largeTitle.bold())
+                        .textFieldStyle(.plain)
+                        .onSubmit {
+                            actions.renameDocument(document, draftTitle)
+                        }
+
+                    Text("Updated \(document.updatedAt, format: Date.FormatStyle(date: .abbreviated, time: .shortened))")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                if horizontalSizeClass != .compact {
+                    InspectorStatusView(document: document, brokenLinkCount: brokenLinkCount)
+                }
+            }
+
+            MarkdownEditorView(content: $draftContent)
+                .onChange(of: draftContent) { _, newValue in
+                    actions.updateDocumentContent(document, newValue)
+                }
+
+            LinkInspectorView(
+                document: document,
+                documents: documents,
+                links: links,
+                actions: actions
+            )
+        }
     }
 }
 
