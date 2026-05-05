@@ -142,3 +142,9 @@
 - Added reduced-motion handling so the splash remains polished without unnecessary movement when accessibility settings request it.
 - Verified the splash implementation builds successfully for macOS.
 - Verified the splash implementation builds successfully for iOS Simulator using `iPhone 17`.
+
+### Distribution Naming
+
+- Set the generated bundle display name to `MarkFlow` for Debug and Release builds without renaming the Xcode project, target, or scheme.
+- Updated the splash title and accessibility label to use the distribution name `MarkFlow Writer`.
+- Documented that App Store Connect/TestFlight should use `MarkFlow Writer` while the installed app displays as `MarkFlow`.

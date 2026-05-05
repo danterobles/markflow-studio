@@ -39,7 +39,7 @@ struct SplashScreenView: View {
                 iconMark
 
                 VStack(spacing: 8) {
-                    Text("MarkFlow Studio")
+                    Text("MarkFlow Writer")
                         .font(.system(size: 34, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
 
@@ -59,7 +59,7 @@ struct SplashScreenView: View {
             }
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("MarkFlow Studio is starting")
+        .accessibilityLabel("MarkFlow Writer is starting")
     }
 
     private var background: some View {

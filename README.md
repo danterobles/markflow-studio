@@ -6,6 +6,13 @@ MarkFlow Studio is a universal Markdown editor for macOS, iPadOS, and iOS. The p
 
 The repository now contains the working MarkFlow Studio MVP foundation. The original Xcode template has been replaced with product SwiftData models, an adaptive SwiftUI app shell, Markdown editing/preview, folder and document management, wiki-style links, export flows, a refreshed glassmorphism UI, and a branded splash screen.
 
+## Distribution Naming
+
+- App Store Connect/TestFlight name: `MarkFlow Writer`.
+- Installed app display name: `MarkFlow`.
+- Xcode project, target, and scheme remain `MarkFlow Studio` to avoid unnecessary project churn.
+- Bundle identifier remains `guru.robles.MarkFlow-Studio`.
+
 ## Product Scope
 
 - Create, edit, rename, duplicate, search, and soft-delete Markdown documents.
@@ -58,7 +65,7 @@ The template `Item` model has been removed. `MarkFlow_StudioApp.swift` registers
 - Internal links: `[[Document Title]]` parsing, broken-link detection, target creation, navigation, backlinks, and rename updates.
 - Export: single document Markdown/HTML/PDF export and folder Markdown export under workspace `exports/`.
 - UI/UX: glassmorphism theme, note cards, hover affordances, floating toolbars, empty states, centered editor, and responsive compact fixes.
-- Splash screen: 2.5-second branded animated startup using `bg_app` and `ico_app` assets with reduced-motion support.
+- Splash screen: 2.5-second branded animated startup showing `MarkFlow Writer` with `bg_app` and `ico_app` assets plus reduced-motion support.
 
 ## Developer Commands
 
