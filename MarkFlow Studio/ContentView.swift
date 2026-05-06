@@ -173,10 +173,10 @@ struct ContentView: View {
             guard let url = try result.get().first else { return }
             try WorkspaceService.configureWorkspace(at: url, in: modelContext)
             workspaceErrorMessage = nil
-            showFeedback("Workspace ready", kind: .success)
+            showFeedback(.workspaceReady)
         } catch {
-            workspaceErrorMessage = "Workspace setup failed. Choose a folder you can write to, then try again. Details: \(error.localizedDescription)"
-            showFeedback("Workspace setup needs attention", kind: .error)
+            workspaceErrorMessage = AppFeedbackMessage.workspaceSetupFailureDetails(for: error)
+            showFeedback(.workspaceSetupNeedsAttention)
         }
     }
 
@@ -188,9 +188,9 @@ struct ContentView: View {
                 selectedFolderId = newDocument.folderId
                 selectedDocumentId = newDocument.id
             }
-            showFeedback("Document created", kind: .success)
+            showFeedback(.documentCreated)
         } catch {
-            showFeedback("Document creation failed. Check workspace permissions and try again.", kind: .error)
+            showFeedback(.documentCreationFailed)
         }
     }
 
@@ -200,9 +200,9 @@ struct ContentView: View {
             try DocumentService.rename(document, to: title, in: modelContext)
             try WikiLinkService.updateReferences(from: oldTitle, to: document.title, in: documents, context: modelContext)
             try WikiLinkService.syncAllLinks(documents: documents, links: links, in: modelContext)
-            showFeedback("Document renamed", kind: .success)
+            showFeedback(.documentRenamed)
         } catch {
-            showFeedback("Document rename failed", kind: .error)
+            showFeedback(.documentRenameFailed)
         }
     }
 
@@ -211,7 +211,7 @@ struct ContentView: View {
             try DocumentService.updateContent(document, content: content, in: modelContext)
             try WikiLinkService.syncLinks(for: document, documents: documents, links: links, in: modelContext)
         } catch {
-            showFeedback("Document save failed", kind: .error)
+            showFeedback(.documentSaveFailed)
         }
     }
 
@@ -223,9 +223,9 @@ struct ContentView: View {
                 selectedFolderId = newDocument.folderId
                 selectedDocumentId = newDocument.id
             }
-            showFeedback("Document duplicated", kind: .success)
+            showFeedback(.documentDuplicated)
         } catch {
-            showFeedback("Document duplication failed", kind: .error)
+            showFeedback(.documentDuplicateFailed)
         }
     }
 
@@ -238,9 +238,9 @@ struct ContentView: View {
                     selectedDocumentId = filteredDocuments.first { $0.id != document.id }?.id
                 }
             }
-            showFeedback("Document moved to trash", kind: .success)
+            showFeedback(.documentMovedToTrash)
         } catch {
-            showFeedback("Document delete failed", kind: .error)
+            showFeedback(.documentDeleteFailed)
         }
     }
 
@@ -256,18 +256,18 @@ struct ContentView: View {
         do {
             let folder = try FolderService.createFolder(named: name, parentId: parentId, in: modelContext)
             selectedFolderId = folder.id
-            showFeedback("Folder created", kind: .success)
+            showFeedback(.folderCreated)
         } catch {
-            showFeedback("Folder creation failed. Check workspace permissions and try again.", kind: .error)
+            showFeedback(.folderCreationFailed)
         }
     }
 
     private func renameFolder(_ folder: MarkdownFolder, to name: String) {
         do {
             try FolderService.rename(folder, to: name, in: modelContext)
-            showFeedback("Folder renamed", kind: .success)
+            showFeedback(.folderRenamed)
         } catch {
-            showFeedback("Folder rename failed", kind: .error)
+            showFeedback(.folderRenameFailed)
         }
     }
 
@@ -280,9 +280,9 @@ struct ContentView: View {
             try FolderService.moveDocument(document, to: folderId, in: modelContext)
             selectedFolderId = folderId
             selectedDocumentId = document.id
-            showFeedback("Document moved", kind: .success)
+            showFeedback(.documentMoved)
         } catch {
-            showFeedback("Document move failed", kind: .error)
+            showFeedback(.documentMoveFailed)
         }
     }
 
@@ -300,21 +300,24 @@ struct ContentView: View {
             switch request {
             case .document(let document, let format):
                 let url = try ExportService.exportDocument(document, format: format, documents: documents, workspace: activeWorkspace)
-                showFeedback("Exported \(format.title) to \(url.lastPathComponent)", kind: .success)
+                showFeedback(.documentExported(format: format, fileName: url.lastPathComponent))
             case .folder(let folder):
                 let url = try ExportService.exportFolder(folder, documents: documents, folders: folders, workspace: activeWorkspace)
-                showFeedback("Folder exported to \(url.lastPathComponent)", kind: .success)
+                showFeedback(.folderExported(fileName: url.lastPathComponent))
             }
         } catch {
-            showFeedback("Export failed: \(error.localizedDescription)", kind: .error)
+            showFeedback(.exportFailed, error: error)
         }
     }
 
     private func navigateToDocument(_ documentId: UUID) {
-        guard let document = documents.first(where: { $0.id == documentId }) else { return }
+        guard let document = documents.first(where: { $0.id == documentId }) else {
+            showFeedback(.linkedDocumentMissing)
+            return
+        }
         selectedFolderId = document.folderId
         selectedDocumentId = document.id
-        showFeedback("Linked document opened", kind: .success)
+        showFeedback(.linkedDocumentOpened)
     }
 
     private func createDocumentFromBrokenLink(_ link: MarkdownLink, sourceDocument: MarkdownDocument) {
@@ -323,9 +326,9 @@ struct ContentView: View {
             try WikiLinkService.syncAllLinks(documents: documents + [document], links: links, in: modelContext)
             selectedFolderId = document.folderId
             selectedDocumentId = document.id
-            showFeedback("Linked document created", kind: .success)
+            showFeedback(.linkedDocumentCreated)
         } catch {
-            showFeedback("Linked document creation failed", kind: .error)
+            showFeedback(.linkedDocumentCreationFailed)
         }
     }
 
@@ -336,15 +339,16 @@ struct ContentView: View {
         do {
             try WikiLinkService.syncAllLinks(documents: documents, links: links, in: modelContext)
         } catch {
-            showFeedback("Link sync failed", kind: .error)
+            showFeedback(.linkSyncFailed)
         }
     }
 
-    private func showFeedback(_ message: String, kind: AppFeedback.Kind) {
-        feedback = AppFeedback(message: message, kind: kind)
+    private func showFeedback(_ message: AppFeedbackMessage, error: Error? = nil) {
+        let text = message.text(error: error)
+        feedback = AppFeedback(message: text, kind: message.kind)
         Task { @MainActor in
             try? await Task.sleep(for: .seconds(2))
-            if feedback?.message == message {
+            if feedback?.message == text {
                 feedback = nil
             }
         }

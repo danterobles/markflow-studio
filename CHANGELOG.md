@@ -49,6 +49,15 @@
 - Covered `ExportService` Markdown, HTML, and folder export behavior with temporary workspace fixtures.
 - Renamed the document soft-delete model property to `isSoftDeleted` with `@Attribute(originalName: "isDeleted")` to avoid SwiftData runtime state conflicts while preserving persisted storage naming.
 
+### Mayo Mejora — Etapa 6: Feedback Mapping And ContentView Refactor
+
+- Added `AppFeedbackMessage` as a presentation-layer mapper for common success, warning, and error feedback.
+- Extended `AppFeedback.Kind` with informational and warning states so UI feedback can distinguish recoverable problems from failures.
+- Routed `ContentView` feedback through typed messages instead of repeated inline strings.
+- Added a warning feedback path when linked-document navigation cannot find the target document.
+- Kept service types independent from visual presentation while making recoverable errors easier to test.
+- Added unit tests for feedback message kinds and recoverable error copy.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

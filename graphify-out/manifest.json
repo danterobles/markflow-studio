@@ -4,8 +4,8 @@
     "hash": "6d6c16538f87d16be4f802a969237dbe"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/ContentView.swift": {
-    "mtime": 1778105937.5907047,
-    "hash": "3fe9a95cadd821eb61c46fbc4630759a"
+    "mtime": 1778106162.0738227,
+    "hash": "cee87808319c423ca63d8be9a307271c"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Models/MarkdownLink.swift": {
     "mtime": 1777919565.5903118,
@@ -76,8 +76,8 @@
     "hash": "528d8be7d3fc9e5afd062ea50f8a1d0b"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/AppFeedback.swift": {
-    "mtime": 1777920187.1111956,
-    "hash": "ab54e6efea83eb377410be5989da4cc1"
+    "mtime": 1778106149.008923,
+    "hash": "41d9e868455400499b69d7cd11f10cce"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FolderActionContext.swift": {
     "mtime": 1777923153.509389,
@@ -95,9 +95,13 @@
     "mtime": 1778105375.132086,
     "hash": "7afeba698cf1303db0d983b4817b67c6"
   },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/AppFeedbackMessage.swift": {
+    "mtime": 1778106149.0095427,
+    "hash": "fab338ef3b561c38633598c0e9bbc435"
+  },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FeedbackBannerView.swift": {
-    "mtime": 1777920187.1168218,
-    "hash": "9ea5bd4d6ffd1e1569a1a7badb962ab5"
+    "mtime": 1778106149.009931,
+    "hash": "26ae94ce7d10bdff8004a174bf582bb5"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/MarkdownEditorView.swift": {
     "mtime": 1778105244.281501,
@@ -155,9 +159,13 @@
     "mtime": 1778105823.1654658,
     "hash": "8dfb671217846e86ea244b118f48e246"
   },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow StudioTests/AppFeedbackMessageTests.swift": {
+    "mtime": 1778106168.5141191,
+    "hash": "049c434d99e28696cab0e2830ee62889"
+  },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/CHANGELOG.md": {
-    "mtime": 1778106013.9524162,
-    "hash": "ba46edc94a60ca6af4714b08703c193d"
+    "mtime": 1778106190.2479718,
+    "hash": "ad61e8e6e60aac902c9a55cca7c024fb"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/README.md": {
     "mtime": 1778022406.914242,
