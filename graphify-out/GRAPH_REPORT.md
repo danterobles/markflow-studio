@@ -1,16 +1,16 @@
 # Graph Report - MarkFlow Studio  (2026-05-06)
 
 ## Corpus Check
-- 33 files · ~53,238 words
+- 34 files · ~54,247 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 422 nodes · 583 edges · 21 communities (15 shown, 6 thin omitted)
+- 432 nodes · 598 edges · 22 communities (16 shown, 6 thin omitted)
 - Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 58 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b85a012a`
+- Built from commit: `0e3a9828`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -36,9 +36,10 @@
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 19|Community 19]]
 - [[_COMMUNITY_Community 20|Community 20]]
+- [[_COMMUNITY_Community 21|Community 21]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `ContentView` - 21 edges
+1. `ContentView` - 22 edges
 2. `ExportService` - 18 edges
 3. `MarkdownPreviewParser` - 13 edges
 4. `MarkdownHelper` - 13 edges
@@ -66,7 +67,7 @@
 - **Export Output Pipeline** — 05_export_spec_export_formats, 05_export_spec_html_export_pipeline, 05_export_spec_pdf_from_html_rendering, 05_export_spec_export_file_handling_considerations [EXTRACTED 1.00]
 - **Markdown Editor Experience Requirements** — system_prompt_ui_agent_premium_minimal_apple_interfaces, system_prompt_ui_agent_componentized_swiftui_views, 05_export_spec_document_and_folder_export, 05_export_spec_internal_link_preservation, chunk_03_markdown_editor_user_experience [INFERRED 0.74]
 
-## Communities (21 total, 6 thin omitted)
+## Communities (22 total, 6 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
@@ -86,15 +87,15 @@ Nodes (40): MVP Feature Scope, MarkFlow Studio Product Vision, Document CRUD And
 
 ### Community 4 - "Community 4"
 Cohesion: 0.11
-Nodes (15): Identifiable, MarkdownChecklistItem, MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock (+7 more)
+Nodes (13): MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock, heading, image (+5 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.1
-Nodes (9): Equatable, ContentView, FolderSheet, create, rename, AppFeedback, Kind, error (+1 more)
+Cohesion: 0.08
+Nodes (26): CaseIterable, Equatable, Identifiable, ExportFormat, html, markdown, pdf, AppFeedback (+18 more)
 
-### Community 7 - "Community 7"
-Cohesion: 0.11
-Nodes (19): CaseIterable, ExportFormat, html, markdown, pdf, MarkdownEditorMode, editor, preview (+11 more)
+### Community 6 - "Community 6"
+Cohesion: 0.14
+Nodes (4): ContentView, FolderSheet, create, rename
 
 ### Community 8 - "Community 8"
 Cohesion: 0.13
@@ -102,17 +103,17 @@ Nodes (19): Document and Folder Export, Export File Handling Considerations, Exp
 
 ### Community 9 - "Community 9"
 Cohesion: 0.14
-Nodes (8): LocalizedError, ExportError, couldNotCreatePDF, missingWorkspace, FolderError, invalidHierarchy, FolderService, FolderTreeItem
+Nodes (6): Codable, MarkdownFolder, WorkspaceSettings, WorkspaceConfig, WorkspaceService, MarkFlowPreviewData
 
 ### Community 10 - "Community 10"
 Cohesion: 0.14
-Nodes (6): Codable, MarkdownFolder, WorkspaceSettings, WorkspaceConfig, WorkspaceService, MarkFlowPreviewData
+Nodes (8): LocalizedError, ExportError, couldNotCreatePDF, missingWorkspace, FolderError, invalidHierarchy, FolderService, FolderTreeItem
 
 ### Community 12 - "Community 12"
 Cohesion: 0.16
 Nodes (7): ViewModifier, GlassPanelModifier, View, GlassCapsuleStyle, MarkFlowTheme, NoteCardStyle, View
 
-### Community 14 - "Community 14"
+### Community 13 - "Community 13"
 Cohesion: 0.14
 Nodes (7): Hashable, CompactBreadcrumbView, DocumentStackView, PhoneAppShellView, PhoneRoute, document, documents
 
@@ -121,27 +122,31 @@ Cohesion: 0.2
 Nodes (10): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, Circular Blue Teal Gradient Badge (+2 more)
 
 ### Community 16 - "Community 16"
+Cohesion: 0.22
+Nodes (5): ExportPreflightSheet, ExportRequest, document, folder, PreflightStatusRow
+
+### Community 17 - "Community 17"
 Cohesion: 0.29
 Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings Data Model, Immediate Visual Feedback UX, Separated Workspace Database Assets Exports Config Layout, User Selected Workspace Storage Requirement, App Feedback Model, Feedback Banner View, Workspace Status Card
 
-### Community 18 - "Community 18"
+### Community 19 - "Community 19"
 Cohesion: 0.67
 Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdown Workspace
 
 ## Knowledge Gaps
-- **88 isolated node(s):** `create`, `MarkFlowTheme`, `heading`, `paragraph`, `bulletList` (+83 more)
+- **90 isolated node(s):** `create`, `document`, `folder`, `MarkFlowTheme`, `heading` (+85 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `FolderTreeItem` connect `Community 9` to `Community 4`?**
-  _High betweenness centrality (0.113) - this node is a cross-community bridge._
-- **Why does `MarkdownFolder` connect `Community 10` to `Community 9`?**
+- **Why does `FolderTreeItem` connect `Community 10` to `Community 5`?**
+  _High betweenness centrality (0.114) - this node is a cross-community bridge._
+- **Why does `MarkdownFolder` connect `Community 9` to `Community 10`?**
   _High betweenness centrality (0.100) - this node is a cross-community bridge._
-- **What connects `create`, `MarkFlowTheme`, `heading` to the rest of the system?**
-  _88 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `create`, `document`, `folder` to the rest of the system?**
+  _90 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

@@ -30,6 +30,15 @@
 - Added backlink counts to document cards so connected notes are visible from document lists.
 - Kept broken-link badges prioritized on cards while surfacing backlink badges when no broken links need attention.
 
+### Mayo Mejora — Etapa 4: Guided Export Preflight
+
+- Added an `ExportPreflightSheet` that turns document and folder export actions into a confirmed review flow.
+- Added preflight details for workspace destination, output path, included document count, resolved links, broken links, and asset references.
+- Kept document exports selectable across Markdown, HTML, and PDF while explaining each format in the sheet.
+- Documented folder export as a Markdown batch export before confirmation.
+- Routed existing document and folder export menus through the preflight sheet before writing files.
+- Improved export success feedback to include the selected format for document exports.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

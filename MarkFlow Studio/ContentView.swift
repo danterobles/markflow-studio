@@ -27,6 +27,7 @@ struct ContentView: View {
     @State private var feedback: AppFeedback?
     @State private var folderSheet: FolderSheet?
     @State private var documentToMove: MarkdownDocument?
+    @State private var exportRequest: ExportRequest?
     @State private var didSyncWikiLinks = false
 
     var body: some View {
@@ -64,6 +65,18 @@ struct ContentView: View {
                 folderTreeItems: FolderService.flattenedFolders(from: folders)
             ) { folderId in
                 moveDocument(document, to: folderId)
+            }
+        }
+        .sheet(item: $exportRequest) { request in
+            ExportPreflightSheet(
+                request: request,
+                documents: documents,
+                folders: folders,
+                links: links,
+                workspace: activeWorkspace,
+                selectWorkspace: selectWorkspace
+            ) { confirmedRequest in
+                performExport(confirmedRequest)
             }
         }
         .onAppear(perform: syncWikiLinksIfNeeded)
@@ -274,22 +287,26 @@ struct ContentView: View {
     }
 
     private func exportDocument(_ document: MarkdownDocument, format: ExportFormat) {
-        do {
-            guard let activeWorkspace else { throw ExportError.missingWorkspace }
-            let url = try ExportService.exportDocument(document, format: format, documents: documents, workspace: activeWorkspace)
-            showFeedback("Exported to \(url.lastPathComponent)", kind: .success)
-        } catch {
-            showFeedback("Export failed: \(error.localizedDescription)", kind: .error)
-        }
+        exportRequest = .document(document, format)
     }
 
     private func exportFolder(_ folder: MarkdownFolder) {
+        exportRequest = .folder(folder)
+    }
+
+    private func performExport(_ request: ExportRequest) {
         do {
             guard let activeWorkspace else { throw ExportError.missingWorkspace }
-            let url = try ExportService.exportFolder(folder, documents: documents, folders: folders, workspace: activeWorkspace)
-            showFeedback("Folder exported to \(url.lastPathComponent)", kind: .success)
+            switch request {
+            case .document(let document, let format):
+                let url = try ExportService.exportDocument(document, format: format, documents: documents, workspace: activeWorkspace)
+                showFeedback("Exported \(format.title) to \(url.lastPathComponent)", kind: .success)
+            case .folder(let folder):
+                let url = try ExportService.exportFolder(folder, documents: documents, folders: folders, workspace: activeWorkspace)
+                showFeedback("Folder exported to \(url.lastPathComponent)", kind: .success)
+            }
         } catch {
-            showFeedback("Folder export failed", kind: .error)
+            showFeedback("Export failed: \(error.localizedDescription)", kind: .error)
         }
     }
 
