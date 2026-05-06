@@ -50,7 +50,9 @@ struct DocumentCardView: View {
             }
         }
         .noteCardStyle(isSelected: isSelected)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+        .accessibilityValue(isSelected ? "Selected" : "")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
@@ -61,6 +63,24 @@ struct DocumentCardView: View {
 
     private var updatedDateText: String {
         document.updatedAt.formatted(Date.FormatStyle(date: .abbreviated, time: .omitted))
+    }
+
+    private var accessibilitySummary: String {
+        var parts = [
+            document.title,
+            "\(document.wordCount) words",
+            "Updated \(updatedDateText)"
+        ]
+
+        if brokenLinkCount > 0 {
+            parts.append("\(brokenLinkCount) broken links")
+        }
+
+        if backlinkCount > 0 {
+            parts.append("\(backlinkCount) backlinks")
+        }
+
+        return parts.joined(separator: ", ")
     }
 }
 

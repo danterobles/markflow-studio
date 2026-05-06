@@ -1,16 +1,16 @@
 # Graph Report - MarkFlow Studio  (2026-05-06)
 
 ## Corpus Check
-- 41 files · ~55,568 words
+- 41 files · ~55,897 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 524 nodes · 736 edges · 43 communities (28 shown, 15 thin omitted)
+- 524 nodes · 736 edges · 44 communities (29 shown, 15 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 68 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `279ef0db`
+- Built from commit: `57128647`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -58,6 +58,7 @@
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 42|Community 42]]
+- [[_COMMUNITY_Community 43|Community 43]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `AppFeedbackMessage` - 28 edges
@@ -88,7 +89,7 @@
 - **Export Output Pipeline** — 05_export_spec_export_formats, 05_export_spec_html_export_pipeline, 05_export_spec_pdf_from_html_rendering, 05_export_spec_export_file_handling_considerations [EXTRACTED 1.00]
 - **Markdown Editor Experience Requirements** — system_prompt_ui_agent_premium_minimal_apple_interfaces, system_prompt_ui_agent_componentized_swiftui_views, 05_export_spec_document_and_folder_export, 05_export_spec_internal_link_preservation, chunk_03_markdown_editor_user_experience [INFERRED 0.74]
 
-## Communities (43 total, 15 thin omitted)
+## Communities (44 total, 15 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
@@ -147,58 +148,62 @@ Cohesion: 0.24
 Nodes (5): ExportPreflightSheet, ExportRequest, document, folder, PreflightStatusRow
 
 ### Community 16 - "Community 16"
-Cohesion: 0.2
-Nodes (10): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, Circular Blue Teal Gradient Badge (+2 more)
-
-### Community 17 - "Community 17"
 Cohesion: 0.25
 Nodes (7): Equatable, AppFeedback, Kind, error, info, success, warning
 
-### Community 18 - "Community 18"
+### Community 17 - "Community 17"
 Cohesion: 0.29
 Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings Data Model, Immediate Visual Feedback UX, Separated Workspace Database Assets Exports Config Layout, User Selected Workspace Storage Requirement, App Feedback Model, Feedback Banner View, Workspace Status Card
 
-### Community 19 - "Community 19"
+### Community 18 - "Community 18"
 Cohesion: 0.25
 Nodes (8): MarkFlow Studio 256 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Medium Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol, MarkFlow Studio 256 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Medium Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
 
-### Community 20 - "Community 20"
+### Community 19 - "Community 19"
 Cohesion: 0.25
 Nodes (8): MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol, MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol
 
-### Community 21 - "Community 21"
+### Community 20 - "Community 20"
 Cohesion: 0.25
 Nodes (8): MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol, MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol
 
-### Community 22 - "Community 22"
+### Community 21 - "Community 21"
 Cohesion: 0.38
 Nodes (3): DocumentEmptyStateView, DocumentListContextHeader, DocumentListView
 
-### Community 24 - "Community 24"
+### Community 22 - "Community 22"
 Cohesion: 0.6
-Nodes (4): View, OnboardingStepView, WorkspaceFolderRow, WorkspaceOnboardingView
+Nodes (4): View, FolderRowView, FolderSidebarView, SidebarLibraryRow
+
+### Community 24 - "Community 24"
+Cohesion: 0.33
+Nodes (6): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Studio App Icon, Circular Blue Teal Gradient Badge, Blue Teal MarkFlow Visual Identity
 
 ### Community 26 - "Community 26"
 Cohesion: 0.6
-Nodes (3): FolderRowView, FolderSidebarView, SidebarLibraryRow
+Nodes (3): OnboardingStepView, WorkspaceFolderRow, WorkspaceOnboardingView
 
 ### Community 27 - "Community 27"
 Cohesion: 0.4
-Nodes (5): MarkFlow Studio 128 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol, MarkFlow Studio App Icon
+Nodes (5): MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, White M With Upward Arrow Symbol
 
 ### Community 33 - "Community 33"
 Cohesion: 0.5
-Nodes (4): MarkFlow Studio 16 Pixel App Icon Variant, Tiny Circular Blue Teal Gradient Badge, Tiny Blue Teal MarkFlow Visual Identity, Tiny White M With Upward Arrow Symbol
+Nodes (4): MarkFlow Studio 128 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
 
 ### Community 34 - "Community 34"
 Cohesion: 0.5
-Nodes (4): MarkFlow Studio 64 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
+Nodes (4): MarkFlow Studio 16 Pixel App Icon Variant, Tiny Circular Blue Teal Gradient Badge, Tiny Blue Teal MarkFlow Visual Identity, Tiny White M With Upward Arrow Symbol
 
 ### Community 35 - "Community 35"
 Cohesion: 0.5
 Nodes (4): MarkFlow Studio App Icon Variant, Circular Blue Teal Gradient Badge, Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
 
-### Community 42 - "Community 42"
+### Community 36 - "Community 36"
+Cohesion: 0.5
+Nodes (4): MarkFlow Studio 64 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
+
+### Community 43 - "Community 43"
 Cohesion: 0.67
 Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdown Workspace
 

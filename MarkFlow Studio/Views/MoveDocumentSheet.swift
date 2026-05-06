@@ -20,6 +20,8 @@ struct MoveDocumentSheet: View {
                 } label: {
                     Label("No Folder", systemImage: document.folderId == nil ? "checkmark.circle.fill" : "tray")
                 }
+                .accessibilityValue(document.folderId == nil ? "Current location" : "")
+                .accessibilityAddTraits(document.folderId == nil ? .isSelected : [])
 
                 ForEach(folderTreeItems) { item in
                     Button {
@@ -33,6 +35,9 @@ struct MoveDocumentSheet: View {
                             Text(item.folder.name)
                         }
                     }
+                    .accessibilityLabel(item.folder.name)
+                    .accessibilityValue(document.folderId == item.folder.id ? "Current location" : "")
+                    .accessibilityAddTraits(document.folderId == item.folder.id ? .isSelected : [])
                 }
             }
             .navigationTitle("Move Document")

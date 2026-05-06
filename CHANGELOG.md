@@ -58,6 +58,15 @@
 - Kept service types independent from visual presentation while making recoverable errors easier to test.
 - Added unit tests for feedback message kinds and recoverable error copy.
 
+### Mayo Mejora — Etapa 7: Liquid Glass Accessibility Pass
+
+- Improved glass panel and capsule surfaces for Increase Contrast and Reduce Transparency accessibility settings.
+- Disabled card hover scaling when Reduce Motion is active while preserving selection feedback.
+- Strengthened selected and bordered note-card contrast under increased contrast settings.
+- Added clearer VoiceOver summaries for document cards, including selected state, word count, updated date, broken links, and backlinks.
+- Improved checklist and image accessibility in Markdown preview with explicit labels and values.
+- Added current-location VoiceOver state when moving documents between folders.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

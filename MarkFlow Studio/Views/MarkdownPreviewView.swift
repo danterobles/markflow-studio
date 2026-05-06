@@ -29,6 +29,7 @@ struct MarkdownPreviewView: View {
         }
         .frame(minHeight: 420)
         .glassPanel(cornerRadius: 28)
+        .accessibilityElement(children: .contain)
         .accessibilityLabel("Markdown preview")
     }
 }
@@ -64,6 +65,9 @@ private struct MarkdownPreviewBlockView: View {
                             .foregroundStyle(item.isChecked ? .green : .secondary)
                         MarkdownInlineText(item.text)
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(item.text)
+                    .accessibilityValue(item.isChecked ? "Checked" : "Not checked")
                 }
             }
         case .table(let rows):
@@ -103,6 +107,7 @@ private struct MarkdownPreviewBlockView: View {
                 Image(systemName: "photo")
                     .font(.title2)
                     .foregroundStyle(.secondary)
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(altText.isEmpty ? "Image" : altText)
                         .font(.headline)
@@ -115,6 +120,9 @@ private struct MarkdownPreviewBlockView: View {
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(altText.isEmpty ? "Image" : "Image: \(altText)")
+            .accessibilityValue(path)
         }
     }
 
