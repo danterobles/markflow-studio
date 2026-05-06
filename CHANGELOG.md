@@ -2,6 +2,17 @@
 
 ## 2026-05-06
 
+### Mayo Mejora — Etapa 11: HTML/PDF Export Validation With Real Fixtures
+
+- Replaced the line-by-line HTML renderer with a block-aware state-machine parser that handles the full range of common Markdown constructs.
+- Added rendering support for unordered lists (`<ul>`), ordered lists (`<ol>`), fenced code blocks (`<pre><code>`), tables (`<table>`), blockquotes (`<blockquote>`), checklist items (`<ul class="checklist">`), and deep headings h4–h6.
+- Enhanced inline HTML rendering to handle bold (`**text**` → `<strong>`), italic (`*text*` → `<em>`), and inline code (`` `code` `` → `<code>`) while preserving existing link and HTML-escape behavior.
+- Improved HTML export CSS with styles for `pre`, `code`, `table`, `blockquote`, `ul.checklist`, `figure`, `figcaption`, and all heading levels.
+- Added `renderHTMLBody` and `renderTable` private helpers to keep `htmlContent` readable and each block type independently testable.
+- Expanded `ExportServiceTests` with 13 targeted fixture tests covering: unordered lists, ordered lists, fenced code blocks with and without language tags, tables, blockquotes, checklist items, h4–h6 headings, inline bold, inline italic, inline code, escaped inline code content, PDF non-empty output, and a full rich-fixture round-trip validating Markdown and HTML export together.
+
+
+
 ### Mayo Mejora — Etapa 1: Workspace Onboarding And Empty States
 
 - Added a dedicated workspace onboarding screen shown before the main app shell when no workspace is configured.
