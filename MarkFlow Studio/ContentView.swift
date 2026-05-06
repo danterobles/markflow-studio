@@ -14,7 +14,7 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @Query(filter: #Predicate<MarkdownDocument> { document in
-        !document.isDeleted
+        !document.isSoftDeleted
     }, sort: \MarkdownDocument.updatedAt, order: .reverse) private var documents: [MarkdownDocument]
     @Query(sort: \MarkdownFolder.name) private var folders: [MarkdownFolder]
     @Query private var links: [MarkdownLink]

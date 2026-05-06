@@ -39,6 +39,16 @@
 - Routed existing document and folder export menus through the preflight sheet before writing files.
 - Improved export success feedback to include the selected format for document exports.
 
+### Mayo Mejora — Etapa 5: Core Service Unit Tests
+
+- Added a `MarkFlow StudioTests` unit test target to the Xcode project and included it in the existing scheme test action.
+- Added in-memory SwiftData test support for service-level tests without touching user workspaces.
+- Covered `DocumentService` create, rename, update, duplicate, soft delete, and search behavior.
+- Covered `FolderService` hierarchy flattening, document moves, folder moves, and invalid cycle blocking.
+- Covered `WikiLinkService` link sync, outgoing links, backlinks, broken-link document creation, and reference updates.
+- Covered `ExportService` Markdown, HTML, and folder export behavior with temporary workspace fixtures.
+- Renamed the document soft-delete model property to `isSoftDeleted` with `@Attribute(originalName: "isDeleted")` to avoid SwiftData runtime state conflicts while preserving persisted storage naming.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

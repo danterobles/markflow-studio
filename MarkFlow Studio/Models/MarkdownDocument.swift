@@ -14,7 +14,7 @@ final class MarkdownDocument {
     var createdAt: Date
     var updatedAt: Date
     var folderId: UUID?
-    var isDeleted: Bool
+    @Attribute(originalName: "isDeleted") var isSoftDeleted: Bool
     var wordCount: Int
 
     init(
@@ -33,7 +33,7 @@ final class MarkdownDocument {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.folderId = folderId
-        self.isDeleted = isDeleted
+        self.isSoftDeleted = isDeleted
         self.wordCount = wordCount ?? Self.countWords(in: content)
     }
 
@@ -49,7 +49,7 @@ final class MarkdownDocument {
     }
 
     func softDelete(at date: Date = Date()) {
-        isDeleted = true
+        isSoftDeleted = true
         updatedAt = date
     }
 

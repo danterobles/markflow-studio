@@ -1,16 +1,16 @@
 # Graph Report - MarkFlow Studio  (2026-05-06)
 
 ## Corpus Check
-- 34 files · ~54,247 words
+- 39 files · ~55,172 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 432 nodes · 598 edges · 22 communities (16 shown, 6 thin omitted)
-- Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 58 edges (avg confidence: 0.85)
+- 488 nodes · 700 edges · 30 communities (25 shown, 5 thin omitted)
+- Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 67 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0e3a9828`
+- Built from commit: `98efcbec`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -37,18 +37,26 @@
 - [[_COMMUNITY_Community 19|Community 19]]
 - [[_COMMUNITY_Community 20|Community 20]]
 - [[_COMMUNITY_Community 21|Community 21]]
+- [[_COMMUNITY_Community 22|Community 22]]
+- [[_COMMUNITY_Community 23|Community 23]]
+- [[_COMMUNITY_Community 24|Community 24]]
+- [[_COMMUNITY_Community 25|Community 25]]
+- [[_COMMUNITY_Community 26|Community 26]]
+- [[_COMMUNITY_Community 27|Community 27]]
+- [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 29|Community 29]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `ContentView` - 22 edges
-2. `ExportService` - 18 edges
-3. `MarkdownPreviewParser` - 13 edges
-4. `MarkdownHelper` - 13 edges
-5. `MarkdownDocument` - 10 edges
-6. `WikiLinkService` - 10 edges
-7. `FolderService` - 9 edges
-8. `MarkdownPreviewBlock` - 8 edges
-9. `DocumentService` - 8 edges
-10. `Document Export Service` - 8 edges
+1. `ContentView` - 23 edges
+2. `ExportService` - 19 edges
+3. `MarkdownDocument` - 16 edges
+4. `MarkdownPreviewParser` - 14 edges
+5. `MarkdownHelper` - 14 edges
+6. `WikiLinkService` - 11 edges
+7. `FolderService` - 10 edges
+8. `MarkdownPreviewBlock` - 9 edges
+9. `DocumentService` - 9 edges
+10. `WorkspaceSettings` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Workspace Configuration Service` --implements--> `Workspace Storage Separation`  [INFERRED]
@@ -67,91 +75,127 @@
 - **Export Output Pipeline** — 05_export_spec_export_formats, 05_export_spec_html_export_pipeline, 05_export_spec_pdf_from_html_rendering, 05_export_spec_export_file_handling_considerations [EXTRACTED 1.00]
 - **Markdown Editor Experience Requirements** — system_prompt_ui_agent_premium_minimal_apple_interfaces, system_prompt_ui_agent_componentized_swiftui_views, 05_export_spec_document_and_folder_export, 05_export_spec_internal_link_preservation, chunk_03_markdown_editor_user_experience [INFERRED 0.74]
 
-## Communities (22 total, 6 thin omitted)
+## Communities (30 total, 5 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (30): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, BacklinkSectionView, DocumentDetailView, InspectorStatusView (+22 more)
+Nodes (26): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, BacklinkSectionView, DocumentDetailView, InspectorStatusView (+18 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.07
-Nodes (45): Liquid Glass UI Direction, Workspace Storage Separation, Layered Adaptive Background, Phased Implementation History, Content View App Orchestrator, Document Action Context, Folder Action Context, Wiki Link Sync Flow (+37 more)
+Cohesion: 0.05
+Nodes (10): DocumentServiceTests, ExportServiceTests, FolderServiceTests, WikiLinkServiceTests, MarkdownDocument, MarkdownFolder, WorkspaceSettings, DocumentService (+2 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.05
-Nodes (41): MarkFlow Studio 128 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol, MarkFlow Studio 16 Pixel App Icon Variant, Tiny Circular Blue Teal Gradient Badge, Tiny Blue Teal MarkFlow Visual Identity, Tiny White M With Upward Arrow Symbol (+33 more)
+Cohesion: 0.07
+Nodes (45): Liquid Glass UI Direction, Workspace Storage Separation, Layered Adaptive Background, Phased Implementation History, Content View App Orchestrator, Document Action Context, Folder Action Context, Wiki Link Sync Flow (+37 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.08
 Nodes (40): MVP Feature Scope, MarkFlow Studio Product Vision, Document CRUD And Search Requirements, Markdown HTML PDF Export Requirements, Folder Hierarchy And Move Requirements, Markdown Editing Helper Requirements, Markdown Preview Mode Requirements, Markdown Document Data Model (+32 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.11
-Nodes (13): MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock, heading, image (+5 more)
+Cohesion: 0.12
+Nodes (15): Identifiable, MarkdownChecklistItem, MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock (+7 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.08
-Nodes (26): CaseIterable, Equatable, Identifiable, ExportFormat, html, markdown, pdf, AppFeedback (+18 more)
+Cohesion: 0.16
+Nodes (10): LocalizedError, ExportError, couldNotCreatePDF, missingWorkspace, ExportFormat, html, markdown, pdf (+2 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.14
 Nodes (4): ContentView, FolderSheet, create, rename
+
+### Community 7 - "Community 7"
+Cohesion: 0.12
+Nodes (19): CaseIterable, MarkdownEditorMode, editor, preview, split, MarkdownEditorView, MarkdownFormattingToolbar, MarkdownHelper (+11 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.13
 Nodes (19): Document and Folder Export, Export File Handling Considerations, Export Formats, Export Spec, HTML Export Pipeline, Internal Link Preservation, PDF From HTML Rendering, Markdown Editor User Experience (+11 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.14
-Nodes (6): Codable, MarkdownFolder, WorkspaceSettings, WorkspaceConfig, WorkspaceService, MarkFlowPreviewData
-
-### Community 10 - "Community 10"
-Cohesion: 0.14
-Nodes (8): LocalizedError, ExportError, couldNotCreatePDF, missingWorkspace, FolderError, invalidHierarchy, FolderService, FolderTreeItem
-
-### Community 12 - "Community 12"
-Cohesion: 0.16
+Cohesion: 0.17
 Nodes (7): ViewModifier, GlassPanelModifier, View, GlassCapsuleStyle, MarkFlowTheme, NoteCardStyle, View
 
-### Community 13 - "Community 13"
-Cohesion: 0.14
+### Community 11 - "Community 11"
+Cohesion: 0.16
 Nodes (7): Hashable, CompactBreadcrumbView, DocumentStackView, PhoneAppShellView, PhoneRoute, document, documents
+
+### Community 12 - "Community 12"
+Cohesion: 0.22
+Nodes (4): FolderError, invalidHierarchy, FolderService, FolderTreeItem
+
+### Community 13 - "Community 13"
+Cohesion: 0.24
+Nodes (5): ExportPreflightSheet, ExportRequest, document, folder, PreflightStatusRow
+
+### Community 14 - "Community 14"
+Cohesion: 0.31
+Nodes (3): Codable, WorkspaceConfig, WorkspaceService
 
 ### Community 15 - "Community 15"
 Cohesion: 0.2
 Nodes (10): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, Circular Blue Teal Gradient Badge (+2 more)
 
 ### Community 16 - "Community 16"
-Cohesion: 0.22
-Nodes (5): ExportPreflightSheet, ExportRequest, document, folder, PreflightStatusRow
-
-### Community 17 - "Community 17"
 Cohesion: 0.29
 Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings Data Model, Immediate Visual Feedback UX, Separated Workspace Database Assets Exports Config Layout, User Selected Workspace Storage Requirement, App Feedback Model, Feedback Banner View, Workspace Status Card
 
+### Community 17 - "Community 17"
+Cohesion: 0.25
+Nodes (8): MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol, MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol
+
+### Community 18 - "Community 18"
+Cohesion: 0.25
+Nodes (8): MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol, MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol
+
 ### Community 19 - "Community 19"
+Cohesion: 0.25
+Nodes (8): MarkFlow Studio 256 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Medium Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol, MarkFlow Studio 256 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Medium Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
+
+### Community 20 - "Community 20"
+Cohesion: 0.33
+Nodes (5): Equatable, AppFeedback, Kind, error, success
+
+### Community 21 - "Community 21"
+Cohesion: 0.4
+Nodes (5): MarkFlow Studio 16 Pixel App Icon Variant, Tiny Circular Blue Teal Gradient Badge, Tiny Blue Teal MarkFlow Visual Identity, Tiny White M With Upward Arrow Symbol, MarkFlow Studio App Icon
+
+### Community 24 - "Community 24"
+Cohesion: 0.5
+Nodes (4): MarkFlow Studio 128 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
+
+### Community 25 - "Community 25"
+Cohesion: 0.5
+Nodes (4): MarkFlow Studio App Icon Variant, Circular Blue Teal Gradient Badge, Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
+
+### Community 26 - "Community 26"
+Cohesion: 0.5
+Nodes (4): MarkFlow Studio 64 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol
+
+### Community 29 - "Community 29"
 Cohesion: 0.67
 Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdown Workspace
 
 ## Knowledge Gaps
-- **90 isolated node(s):** `create`, `document`, `folder`, `MarkFlowTheme`, `heading` (+85 more)
+- **87 isolated node(s):** `create`, `document`, `folder`, `heading`, `paragraph` (+82 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `FolderTreeItem` connect `Community 10` to `Community 5`?**
-  _High betweenness centrality (0.114) - this node is a cross-community bridge._
-- **Why does `MarkdownFolder` connect `Community 9` to `Community 10`?**
-  _High betweenness centrality (0.100) - this node is a cross-community bridge._
+- **Why does `FolderTreeItem` connect `Community 12` to `Community 4`?**
+  _High betweenness centrality (0.143) - this node is a cross-community bridge._
+- **Why does `MarkdownFolder` connect `Community 1` to `Community 12`?**
+  _High betweenness centrality (0.136) - this node is a cross-community bridge._
+- **Are the 9 inferred relationships involving `MarkdownDocument` (e.g. with `.seed()` and `.createDocument()`) actually correct?**
+  _`MarkdownDocument` has 9 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `create`, `document`, `folder` to the rest of the system?**
-  _90 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _87 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.07 - nodes in this community are weakly interconnected._
-- **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
-- **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
+- **Should `Community 2` be split into smaller, more focused modules?**
+  _Cohesion score 0.07 - nodes in this community are weakly interconnected._

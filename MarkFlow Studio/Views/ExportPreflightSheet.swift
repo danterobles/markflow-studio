@@ -63,7 +63,7 @@ struct ExportPreflightSheet: View {
             return documents
                 .filter { document in
                     guard let folderId = document.folderId else { return false }
-                    return folderIds.contains(folderId) && !document.isDeleted
+                    return folderIds.contains(folderId) && !document.isSoftDeleted
                 }
                 .sorted { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
         }
