@@ -107,6 +107,7 @@ struct PhoneAppShellView: View {
                         documents: documents(for: folderId),
                         links: links,
                         folderId: folderId,
+                        folderName: folderName(for: folderId),
                         selectedDocumentId: $selectedDocumentId,
                         path: $path,
                         actions: actions
@@ -135,6 +136,11 @@ struct PhoneAppShellView: View {
         return documents.filter { $0.folderId == folderId }
     }
 
+    private func folderName(for folderId: UUID?) -> String? {
+        guard let folderId else { return nil }
+        return folders.first { $0.id == folderId }?.name
+    }
+
     private func brokenLinkCount(for documentId: UUID) -> Int {
         links.filter { $0.sourceDocumentId == documentId && $0.isBroken }.count
     }
@@ -149,6 +155,7 @@ private struct DocumentStackView: View {
     let documents: [MarkdownDocument]
     let links: [MarkdownLink]
     let folderId: UUID?
+    let folderName: String?
     @Binding var selectedDocumentId: UUID?
     @Binding var path: [PhoneRoute]
     let actions: DocumentActionContext
@@ -225,7 +232,10 @@ private struct DocumentStackView: View {
             .padding()
         }
         .background(AppBackgroundView())
-        .navigationTitle("Documents")
+        .navigationTitle(folderName ?? "All Documents")
+        .safeAreaInset(edge: .top, spacing: 0) {
+            CompactBreadcrumbView(folderName: folderName, documentCount: visibleDocuments.count)
+        }
         .searchable(text: $searchText, prompt: "Search title or content")
         .tint(MarkFlowTheme.accent)
         .toolbar {
@@ -249,5 +259,36 @@ private struct DocumentStackView: View {
 
         guard let newDocumentId = selectedDocumentId, newDocumentId != previousDocumentId else { return }
         path.append(.document(newDocumentId))
+    }
+}
+
+private struct CompactBreadcrumbView: View {
+    let folderName: String?
+    let documentCount: Int
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Label(folderName == nil ? "Workspace" : "Folder", systemImage: folderName == nil ? "tray.full" : "folder")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(MarkFlowTheme.accent)
+
+            Text(folderName ?? "All Documents")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+
+            Spacer()
+
+            Text("\(documentCount)")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.secondary.opacity(0.12), in: Capsule())
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 8)
+        .background(.bar)
+        .accessibilityElement(children: .combine)
     }
 }

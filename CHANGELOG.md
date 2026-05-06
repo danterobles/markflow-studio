@@ -12,6 +12,15 @@
 - Added direct create actions to empty folder and document states on regular and compact layouts.
 - Added first-document guidance that introduces wiki-style `[[Document Title]]` links.
 
+### Mayo Mejora — Etapa 2: Compact Navigation And Writing Shortcuts
+
+- Added contextual document-list headers that show whether the user is viewing the whole workspace or a specific folder.
+- Updated compact iPhone document navigation titles to use the active folder name or `All Documents`.
+- Added a compact breadcrumb strip on iPhone document lists with workspace/folder context and visible document count.
+- Added regular-width document-list context with folder/workspace label and visible document count.
+- Added quick Markdown insertion from the editor header for common writing actions.
+- Added Markdown helpers for wiki links (`[[Document Title]]`) and block quotes.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

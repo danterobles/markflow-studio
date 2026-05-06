@@ -21,6 +21,12 @@ struct MarkdownEditorView: View {
                 .frame(maxWidth: 360)
 
                 Spacer()
+
+                if mode != .preview {
+                    QuickMarkdownMenu { helper in
+                        insert(helper.snippet)
+                    }
+                }
             }
 
             ZStack(alignment: .bottom) {
@@ -110,10 +116,34 @@ private struct MarkdownFormattingToolbar: View {
     }
 }
 
+private struct QuickMarkdownMenu: View {
+    let insert: (MarkdownHelper) -> Void
+
+    var body: some View {
+        Menu {
+            ForEach(MarkdownHelper.quickActions) { helper in
+                Button {
+                    insert(helper)
+                } label: {
+                    Label(helper.title, systemImage: helper.systemImage)
+                }
+            }
+        } label: {
+            Label("Quick Insert", systemImage: "bolt.fill")
+                .labelStyle(.iconOnly)
+        }
+        .buttonStyle(.bordered)
+        .controlSize(.small)
+        .accessibilityLabel("Quick Markdown insert")
+    }
+}
+
 private enum MarkdownHelper: String, CaseIterable, Identifiable {
     case heading
     case bulletList
     case checklist
+    case quote
+    case wikiLink
     case table
     case codeBlock
     case link
@@ -129,6 +159,10 @@ private enum MarkdownHelper: String, CaseIterable, Identifiable {
             "List"
         case .checklist:
             "Checklist"
+        case .quote:
+            "Quote"
+        case .wikiLink:
+            "Wiki Link"
         case .table:
             "Table"
         case .codeBlock:
@@ -148,6 +182,10 @@ private enum MarkdownHelper: String, CaseIterable, Identifiable {
             "list.bullet"
         case .checklist:
             "checklist"
+        case .quote:
+            "quote.bubble"
+        case .wikiLink:
+            "link.badge.plus"
         case .table:
             "tablecells"
         case .codeBlock:
@@ -167,6 +205,10 @@ private enum MarkdownHelper: String, CaseIterable, Identifiable {
             "- First item\n- Second item"
         case .checklist:
             "- [ ] Task\n- [x] Done"
+        case .quote:
+            "> Quote"
+        case .wikiLink:
+            "[[Document Title]]"
         case .table:
             "| Column | Value |\n| --- | --- |\n| Example | Text |"
         case .codeBlock:
@@ -176,6 +218,10 @@ private enum MarkdownHelper: String, CaseIterable, Identifiable {
         case .image:
             "![Alt text](assets/image.png)"
         }
+    }
+
+    static var quickActions: [MarkdownHelper] {
+        [.heading, .checklist, .wikiLink, .codeBlock, .quote]
     }
 }
 

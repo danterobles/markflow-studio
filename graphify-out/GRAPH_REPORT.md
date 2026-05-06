@@ -1,16 +1,16 @@
 # Graph Report - MarkFlow Studio  (2026-05-06)
 
 ## Corpus Check
-- 33 files · ~52,509 words
+- 33 files · ~52,923 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 413 nodes · 570 edges · 21 communities (15 shown, 6 thin omitted)
+- 419 nodes · 579 edges · 21 communities (15 shown, 6 thin omitted)
 - Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 58 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `53b76510`
+- Built from commit: `b8307dc0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -41,7 +41,7 @@
 1. `ContentView` - 21 edges
 2. `ExportService` - 18 edges
 3. `MarkdownPreviewParser` - 13 edges
-4. `MarkdownHelper` - 11 edges
+4. `MarkdownHelper` - 13 edges
 5. `MarkdownDocument` - 10 edges
 6. `WikiLinkService` - 10 edges
 7. `FolderService` - 9 edges
@@ -70,7 +70,7 @@
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (27): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, DocumentDetailView, InspectorStatusView, LinkInspectorView (+19 more)
+Nodes (29): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, DocumentDetailView, InspectorStatusView, LinkInspectorView (+21 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.07
@@ -86,15 +86,15 @@ Nodes (40): MVP Feature Scope, MarkFlow Studio Product Vision, Document CRUD And
 
 ### Community 4 - "Community 4"
 Cohesion: 0.11
-Nodes (13): MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock, heading, image (+5 more)
+Nodes (15): Identifiable, MarkdownChecklistItem, MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock (+7 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.09
-Nodes (24): CaseIterable, Equatable, Identifiable, ExportFormat, html, markdown, pdf, AppFeedback (+16 more)
+Cohesion: 0.1
+Nodes (9): Equatable, ContentView, FolderSheet, create, rename, AppFeedback, Kind, error (+1 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.14
-Nodes (4): ContentView, FolderSheet, create, rename
+Cohesion: 0.11
+Nodes (19): CaseIterable, ExportFormat, html, markdown, pdf, MarkdownEditorMode, editor, preview (+11 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.13
@@ -113,8 +113,8 @@ Cohesion: 0.16
 Nodes (7): ViewModifier, GlassPanelModifier, View, GlassCapsuleStyle, MarkFlowTheme, NoteCardStyle, View
 
 ### Community 14 - "Community 14"
-Cohesion: 0.18
-Nodes (6): Hashable, DocumentStackView, PhoneAppShellView, PhoneRoute, document, documents
+Cohesion: 0.15
+Nodes (7): Hashable, CompactBreadcrumbView, DocumentStackView, PhoneAppShellView, PhoneRoute, document, documents
 
 ### Community 15 - "Community 15"
 Cohesion: 0.29
@@ -122,26 +122,26 @@ Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings
 
 ### Community 16 - "Community 16"
 Cohesion: 0.25
-Nodes (8): MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol, MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol
+Nodes (8): MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol, MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol
 
 ### Community 18 - "Community 18"
 Cohesion: 0.67
 Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdown Workspace
 
 ## Knowledge Gaps
-- **86 isolated node(s):** `create`, `MarkFlowTheme`, `heading`, `paragraph`, `bulletList` (+81 more)
+- **88 isolated node(s):** `create`, `MarkFlowTheme`, `heading`, `paragraph`, `bulletList` (+83 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `FolderTreeItem` connect `Community 9` to `Community 5`?**
-  _High betweenness centrality (0.111) - this node is a cross-community bridge._
+- **Why does `FolderTreeItem` connect `Community 9` to `Community 4`?**
+  _High betweenness centrality (0.112) - this node is a cross-community bridge._
 - **Why does `MarkdownFolder` connect `Community 10` to `Community 9`?**
-  _High betweenness centrality (0.099) - this node is a cross-community bridge._
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **What connects `create`, `MarkFlowTheme`, `heading` to the rest of the system?**
-  _86 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _88 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

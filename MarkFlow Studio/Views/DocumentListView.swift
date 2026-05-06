@@ -8,6 +8,8 @@ import SwiftUI
 struct DocumentListView: View {
     let documents: [MarkdownDocument]
     let links: [MarkdownLink]
+    var contextTitle = "Documents"
+    var contextSubtitle: String?
     @Binding var selectedDocumentId: UUID?
     let actions: DocumentActionContext
     @State private var searchText = ""
@@ -81,7 +83,12 @@ struct DocumentListView: View {
             .padding()
         }
         .background(AppBackgroundView())
-        .navigationTitle("Documents")
+        .navigationTitle(contextTitle)
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if let contextSubtitle {
+                DocumentListContextHeader(title: contextTitle, subtitle: contextSubtitle, documentCount: visibleDocuments.count)
+            }
+        }
         .searchable(text: $searchText, prompt: "Search title or content")
         .tint(MarkFlowTheme.accent)
         .toolbar {
@@ -97,6 +104,35 @@ struct DocumentListView: View {
 
     private func brokenLinkCount(for document: MarkdownDocument) -> Int {
         links.filter { $0.sourceDocumentId == document.id && $0.isBroken }.count
+    }
+}
+
+private struct DocumentListContextHeader: View {
+    let title: String
+    let subtitle: String
+    let documentCount: Int
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Label(subtitle, systemImage: subtitle == "Folder" ? "folder" : "tray.full")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(MarkFlowTheme.accent)
+
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+
+            Spacer()
+
+            Text("\(documentCount) docs")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 8)
+        .background(.bar)
+        .accessibilityElement(children: .combine)
     }
 }
 

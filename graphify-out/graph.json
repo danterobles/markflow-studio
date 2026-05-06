@@ -82,7 +82,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L1",
       "id": "contentview_swift",
-      "community": 6,
+      "community": 5,
       "norm_label": "contentview.swift"
     },
     {
@@ -91,7 +91,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L12",
       "id": "markflow_studio_contentview_contentview",
-      "community": 6,
+      "community": 5,
       "norm_label": "contentview"
     },
     {
@@ -109,7 +109,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L153",
       "id": "markflow_studio_contentview_contentview_selectworkspace",
-      "community": 6,
+      "community": 5,
       "norm_label": ".selectworkspace()"
     },
     {
@@ -118,7 +118,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L158",
       "id": "markflow_studio_contentview_contentview_handleworkspaceselection",
-      "community": 6,
+      "community": 5,
       "norm_label": ".handleworkspaceselection()"
     },
     {
@@ -127,7 +127,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L170",
       "id": "markflow_studio_contentview_contentview_adddocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".adddocument()"
     },
     {
@@ -136,7 +136,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L184",
       "id": "markflow_studio_contentview_contentview_renamedocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".renamedocument()"
     },
     {
@@ -145,7 +145,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L196",
       "id": "markflow_studio_contentview_contentview_updatedocumentcontent",
-      "community": 6,
+      "community": 5,
       "norm_label": ".updatedocumentcontent()"
     },
     {
@@ -154,7 +154,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L205",
       "id": "markflow_studio_contentview_contentview_duplicatedocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".duplicatedocument()"
     },
     {
@@ -163,7 +163,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L219",
       "id": "markflow_studio_contentview_contentview_deletedocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".deletedocument()"
     },
     {
@@ -172,7 +172,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L234",
       "id": "markflow_studio_contentview_contentview_presentcreatefolder",
-      "community": 6,
+      "community": 5,
       "norm_label": ".presentcreatefolder()"
     },
     {
@@ -181,7 +181,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L238",
       "id": "markflow_studio_contentview_contentview_presentrenamefolder",
-      "community": 6,
+      "community": 5,
       "norm_label": ".presentrenamefolder()"
     },
     {
@@ -190,7 +190,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L242",
       "id": "markflow_studio_contentview_contentview_createfolder",
-      "community": 6,
+      "community": 5,
       "norm_label": ".createfolder()"
     },
     {
@@ -199,7 +199,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L252",
       "id": "markflow_studio_contentview_contentview_renamefolder",
-      "community": 6,
+      "community": 5,
       "norm_label": ".renamefolder()"
     },
     {
@@ -208,7 +208,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L261",
       "id": "markflow_studio_contentview_contentview_presentmovedocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".presentmovedocument()"
     },
     {
@@ -217,7 +217,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L265",
       "id": "markflow_studio_contentview_contentview_movedocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".movedocument()"
     },
     {
@@ -226,7 +226,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L276",
       "id": "markflow_studio_contentview_contentview_exportdocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".exportdocument()"
     },
     {
@@ -235,7 +235,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L286",
       "id": "markflow_studio_contentview_contentview_exportfolder",
-      "community": 6,
+      "community": 5,
       "norm_label": ".exportfolder()"
     },
     {
@@ -244,7 +244,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L296",
       "id": "markflow_studio_contentview_contentview_navigatetodocument",
-      "community": 6,
+      "community": 5,
       "norm_label": ".navigatetodocument()"
     },
     {
@@ -253,7 +253,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L303",
       "id": "markflow_studio_contentview_contentview_createdocumentfrombrokenlink",
-      "community": 6,
+      "community": 5,
       "norm_label": ".createdocumentfrombrokenlink()"
     },
     {
@@ -262,7 +262,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L315",
       "id": "markflow_studio_contentview_contentview_syncwikilinksifneeded",
-      "community": 6,
+      "community": 5,
       "norm_label": ".syncwikilinksifneeded()"
     },
     {
@@ -271,7 +271,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L326",
       "id": "markflow_studio_contentview_contentview_showfeedback",
-      "community": 6,
+      "community": 5,
       "norm_label": ".showfeedback()"
     },
     {
@@ -280,7 +280,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L337",
       "id": "markflow_studio_contentview_foldersheet",
-      "community": 6,
+      "community": 5,
       "norm_label": "foldersheet"
     },
     {
@@ -289,7 +289,7 @@
       "source_file": "",
       "source_location": "",
       "id": "identifiable",
-      "community": 5,
+      "community": 4,
       "norm_label": "identifiable"
     },
     {
@@ -298,7 +298,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L338",
       "id": "markflow_studio_contentview_foldersheet_create",
-      "community": 6,
+      "community": 5,
       "norm_label": "create"
     },
     {
@@ -307,7 +307,7 @@
       "source_file": "ContentView.swift",
       "source_location": "L339",
       "id": "markflow_studio_contentview_foldersheet_rename",
-      "community": 6,
+      "community": 5,
       "norm_label": "rename"
     },
     {
@@ -629,7 +629,7 @@
       "label": ".brokenLinkCount()",
       "file_type": "code",
       "source_file": "Views/DesktopAppShellView.swift",
-      "source_location": "L54",
+      "source_location": "L61",
       "id": "views_desktopappshellview_desktopappshellview_brokenlinkcount",
       "community": 0,
       "norm_label": ".brokenlinkcount()"
@@ -775,7 +775,7 @@
       "source_file": "Views/MarkdownPreviewView.swift",
       "source_location": "L168",
       "id": "views_markdownpreviewview_markdownchecklistitem",
-      "community": 5,
+      "community": 4,
       "norm_label": "markdownchecklistitem"
     },
     {
@@ -1043,16 +1043,25 @@
       "label": ".documents()",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "id": "views_phoneappshellview_phoneappshellview_documents",
       "community": 14,
       "norm_label": ".documents()"
     },
     {
+      "label": ".folderName()",
+      "file_type": "code",
+      "source_file": "Views/PhoneAppShellView.swift",
+      "source_location": "L139",
+      "id": "views_phoneappshellview_phoneappshellview_foldername",
+      "community": 14,
+      "norm_label": ".foldername()"
+    },
+    {
       "label": ".brokenLinkCount()",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L138",
+      "source_location": "L144",
       "id": "views_phoneappshellview_phoneappshellview_brokenlinkcount",
       "community": 14,
       "norm_label": ".brokenlinkcount()"
@@ -1061,7 +1070,7 @@
       "label": "PhoneRoute",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L143",
+      "source_location": "L149",
       "id": "views_phoneappshellview_phoneroute",
       "community": 14,
       "norm_label": "phoneroute"
@@ -1079,7 +1088,7 @@
       "label": "documents",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L144",
+      "source_location": "L150",
       "id": "views_phoneappshellview_phoneroute_documents",
       "community": 14,
       "norm_label": "documents"
@@ -1088,7 +1097,7 @@
       "label": "document",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L145",
+      "source_location": "L151",
       "id": "views_phoneappshellview_phoneroute_document",
       "community": 14,
       "norm_label": "document"
@@ -1097,7 +1106,7 @@
       "label": "DocumentStackView",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L148",
+      "source_location": "L154",
       "id": "views_phoneappshellview_documentstackview",
       "community": 14,
       "norm_label": "documentstackview"
@@ -1106,7 +1115,7 @@
       "label": ".brokenLinkCount()",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L242",
+      "source_location": "L252",
       "id": "views_phoneappshellview_documentstackview_brokenlinkcount",
       "community": 14,
       "norm_label": ".brokenlinkcount()"
@@ -1115,10 +1124,19 @@
       "label": ".addDocumentAndOpen()",
       "file_type": "code",
       "source_file": "Views/PhoneAppShellView.swift",
-      "source_location": "L246",
+      "source_location": "L256",
       "id": "views_phoneappshellview_documentstackview_adddocumentandopen",
       "community": 14,
       "norm_label": ".adddocumentandopen()"
+    },
+    {
+      "label": "CompactBreadcrumbView",
+      "file_type": "code",
+      "source_file": "Views/PhoneAppShellView.swift",
+      "source_location": "L265",
+      "id": "views_phoneappshellview_compactbreadcrumbview",
+      "community": 14,
+      "norm_label": "compactbreadcrumbview"
     },
     {
       "label": "WorkspaceStatusCard.swift",
@@ -1403,7 +1421,7 @@
       "label": ".insert()",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L65",
+      "source_location": "L71",
       "id": "views_markdowneditorview_markdowneditorview_insert",
       "community": 0,
       "norm_label": ".insert()"
@@ -1412,9 +1430,9 @@
       "label": "MarkdownEditorMode",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L71",
+      "source_location": "L77",
       "id": "views_markdowneditorview_markdowneditormode",
-      "community": 5,
+      "community": 6,
       "norm_label": "markdowneditormode"
     },
     {
@@ -1432,122 +1450,149 @@
       "source_file": "",
       "source_location": "",
       "id": "caseiterable",
-      "community": 5,
+      "community": 6,
       "norm_label": "caseiterable"
     },
     {
       "label": "editor",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L72",
+      "source_location": "L78",
       "id": "views_markdowneditorview_markdowneditormode_editor",
-      "community": 5,
+      "community": 6,
       "norm_label": "editor"
     },
     {
       "label": "preview",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L73",
+      "source_location": "L79",
       "id": "views_markdowneditorview_markdowneditormode_preview",
-      "community": 5,
+      "community": 6,
       "norm_label": "preview"
     },
     {
       "label": "split",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L74",
+      "source_location": "L80",
       "id": "views_markdowneditorview_markdowneditormode_split",
-      "community": 5,
+      "community": 6,
       "norm_label": "split"
     },
     {
       "label": "MarkdownFormattingToolbar",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L90",
+      "source_location": "L96",
       "id": "views_markdowneditorview_markdownformattingtoolbar",
       "community": 0,
       "norm_label": "markdownformattingtoolbar"
     },
     {
+      "label": "QuickMarkdownMenu",
+      "file_type": "code",
+      "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L119",
+      "id": "views_markdowneditorview_quickmarkdownmenu",
+      "community": 0,
+      "norm_label": "quickmarkdownmenu"
+    },
+    {
       "label": "MarkdownHelper",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L113",
+      "source_location": "L141",
       "id": "views_markdowneditorview_markdownhelper",
-      "community": 5,
+      "community": 6,
       "norm_label": "markdownhelper"
     },
     {
       "label": "heading",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L114",
+      "source_location": "L142",
       "id": "views_markdowneditorview_markdownhelper_heading",
-      "community": 5,
+      "community": 6,
       "norm_label": "heading"
     },
     {
       "label": "bulletList",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L115",
+      "source_location": "L143",
       "id": "views_markdowneditorview_markdownhelper_bulletlist",
-      "community": 5,
+      "community": 6,
       "norm_label": "bulletlist"
     },
     {
       "label": "checklist",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L116",
+      "source_location": "L144",
       "id": "views_markdowneditorview_markdownhelper_checklist",
-      "community": 5,
+      "community": 6,
       "norm_label": "checklist"
+    },
+    {
+      "label": "quote",
+      "file_type": "code",
+      "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L145",
+      "id": "views_markdowneditorview_markdownhelper_quote",
+      "community": 6,
+      "norm_label": "quote"
+    },
+    {
+      "label": "wikiLink",
+      "file_type": "code",
+      "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L146",
+      "id": "views_markdowneditorview_markdownhelper_wikilink",
+      "community": 6,
+      "norm_label": "wikilink"
     },
     {
       "label": "table",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L117",
+      "source_location": "L147",
       "id": "views_markdowneditorview_markdownhelper_table",
-      "community": 5,
+      "community": 6,
       "norm_label": "table"
     },
     {
       "label": "codeBlock",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L118",
+      "source_location": "L148",
       "id": "views_markdowneditorview_markdownhelper_codeblock",
-      "community": 5,
+      "community": 6,
       "norm_label": "codeblock"
     },
     {
       "label": "link",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L119",
+      "source_location": "L149",
       "id": "views_markdowneditorview_markdownhelper_link",
-      "community": 5,
+      "community": 6,
       "norm_label": "link"
     },
     {
       "label": "image",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L120",
+      "source_location": "L150",
       "id": "views_markdowneditorview_markdownhelper_image",
-      "community": 5,
+      "community": 6,
       "norm_label": "image"
     },
     {
       "label": "MarkdownTextEditor",
       "file_type": "code",
       "source_file": "Views/MarkdownEditorView.swift",
-      "source_location": "L182",
+      "source_location": "L228",
       "id": "views_markdowneditorview_markdowntexteditor",
       "community": 0,
       "norm_label": "markdowntexteditor"
@@ -1601,16 +1646,25 @@
       "label": ".brokenLinkCount()",
       "file_type": "code",
       "source_file": "Views/DocumentListView.swift",
-      "source_location": "L98",
+      "source_location": "L105",
       "id": "views_documentlistview_documentlistview_brokenlinkcount",
       "community": 0,
       "norm_label": ".brokenlinkcount()"
     },
     {
+      "label": "DocumentListContextHeader",
+      "file_type": "code",
+      "source_file": "Views/DocumentListView.swift",
+      "source_location": "L110",
+      "id": "views_documentlistview_documentlistcontextheader",
+      "community": 0,
+      "norm_label": "documentlistcontextheader"
+    },
+    {
       "label": "DocumentEmptyStateView",
       "file_type": "code",
       "source_file": "Views/DocumentListView.swift",
-      "source_location": "L103",
+      "source_location": "L139",
       "id": "views_documentlistview_documentemptystateview",
       "community": 0,
       "norm_label": "documentemptystateview"
@@ -1765,7 +1819,7 @@
       "source_file": "Services/ExportService.swift",
       "source_location": "L14",
       "id": "services_exportservice_exportformat",
-      "community": 5,
+      "community": 6,
       "norm_label": "exportformat"
     },
     {
@@ -1774,7 +1828,7 @@
       "source_file": "Services/ExportService.swift",
       "source_location": "L15",
       "id": "services_exportservice_exportformat_markdown",
-      "community": 5,
+      "community": 6,
       "norm_label": "markdown"
     },
     {
@@ -1783,7 +1837,7 @@
       "source_file": "Services/ExportService.swift",
       "source_location": "L16",
       "id": "services_exportservice_exportformat_html",
-      "community": 5,
+      "community": 6,
       "norm_label": "html"
     },
     {
@@ -1792,7 +1846,7 @@
       "source_file": "Services/ExportService.swift",
       "source_location": "L17",
       "id": "services_exportservice_exportformat_pdf",
-      "community": 5,
+      "community": 6,
       "norm_label": "pdf"
     },
     {
@@ -4105,7 +4159,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "markflow studio 32 pixel app icon variant",
       "id": "markflow_studio_32_1_app_icon_asset"
     },
@@ -4118,7 +4172,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "small blue teal markflow visual identity",
       "id": "markflow_studio_32_1_visual_identity"
     },
@@ -4131,7 +4185,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "small circular blue teal gradient badge",
       "id": "markflow_studio_32_1_circular_gradient_badge"
     },
@@ -4144,7 +4198,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "small white m with upward arrow symbol",
       "id": "markflow_studio_32_1_white_m_arrow_symbol"
     },
@@ -4157,7 +4211,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "markflow studio 32 pixel app icon variant",
       "id": "markflow_studio_32_app_icon_asset"
     },
@@ -4170,7 +4224,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "small blue teal markflow visual identity",
       "id": "markflow_studio_32_visual_identity"
     },
@@ -4183,7 +4237,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "small circular blue teal gradient badge",
       "id": "markflow_studio_32_circular_gradient_badge"
     },
@@ -4196,7 +4250,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 2,
       "norm_label": "small white m with upward arrow symbol",
       "id": "markflow_studio_32_white_m_arrow_symbol"
     },
@@ -4261,7 +4315,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "markflow writer 512 pixel app icon variant",
       "id": "markflow_writer_512_1_app_icon_asset"
     },
@@ -4274,7 +4328,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "large blue teal markflow visual identity",
       "id": "markflow_writer_512_1_visual_identity"
     },
@@ -4287,7 +4341,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "large circular blue teal gradient badge",
       "id": "markflow_writer_512_1_circular_gradient_badge"
     },
@@ -4300,7 +4354,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "large white m with upward arrow symbol",
       "id": "markflow_writer_512_1_white_m_arrow_symbol"
     },
@@ -4313,7 +4367,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "markflow writer 512 pixel app icon variant",
       "id": "markflow_writer_512_app_icon_asset"
     },
@@ -4326,7 +4380,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "large blue teal markflow visual identity",
       "id": "markflow_writer_512_visual_identity"
     },
@@ -4339,7 +4393,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "large circular blue teal gradient badge",
       "id": "markflow_writer_512_circular_gradient_badge"
     },
@@ -4352,7 +4406,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 2,
+      "community": 16,
       "norm_label": "large white m with upward arrow symbol",
       "id": "markflow_writer_512_white_m_arrow_symbol"
     },
@@ -4812,6 +4866,16 @@
     {
       "relation": "inherits",
       "confidence": "EXTRACTED",
+      "source_file": "Views/PhoneAppShellView.swift",
+      "source_location": "L265",
+      "weight": 1.0,
+      "source": "views_phoneappshellview_compactbreadcrumbview",
+      "target": "view",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
       "source_file": "Views/WorkspaceStatusCard.swift",
       "source_location": "L8",
       "weight": 1.0,
@@ -4933,6 +4997,16 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "views_markdowneditorview_quickmarkdownmenu",
+      "target": "view",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/MarkdownEditorView.swift",
       "source_location": "L182",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4963,11 +5037,21 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "Views/DocumentListView.swift",
-      "source_location": "L103",
+      "source_location": "L110",
       "weight": 1.0,
-      "source": "views_documentlistview_documentemptystateview",
+      "source": "views_documentlistview_documentlistcontextheader",
       "target": "view",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/DocumentListView.swift",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "views_documentlistview_documentemptystateview",
+      "target": "view"
     },
     {
       "relation": "inherits",
@@ -4975,9 +5059,9 @@
       "source_file": "Views/WorkspaceOnboardingView.swift",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "views_workspaceonboardingview_workspaceonboardingview",
-      "target": "view",
-      "confidence_score": 1.0
+      "target": "view"
     },
     {
       "relation": "inherits",
@@ -4985,9 +5069,9 @@
       "source_file": "Views/WorkspaceOnboardingView.swift",
       "source_location": "L118",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "views_workspaceonboardingview_workspacefolderrow",
-      "target": "view",
-      "confidence_score": 1.0
+      "target": "view"
     },
     {
       "relation": "inherits",
@@ -4995,9 +5079,9 @@
       "source_file": "Views/WorkspaceOnboardingView.swift",
       "source_location": "L137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "views_workspaceonboardingview_onboardingstepview",
-      "target": "view",
-      "confidence_score": 1.0
+      "target": "view"
     },
     {
       "relation": "calls",
@@ -6349,6 +6433,16 @@
       "target": "views_phoneappshellview_documentstackview"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/PhoneAppShellView.swift",
+      "source_location": "L265",
+      "weight": 1.0,
+      "source": "views_phoneappshellview_swift",
+      "target": "views_phoneappshellview_compactbreadcrumbview",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "Views/PhoneAppShellView.swift",
@@ -6357,6 +6451,16 @@
       "confidence_score": 1.0,
       "source": "views_phoneappshellview_phoneappshellview",
       "target": "views_phoneappshellview_phoneappshellview_documents"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/PhoneAppShellView.swift",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "views_phoneappshellview_phoneappshellview",
+      "target": "views_phoneappshellview_phoneappshellview_foldername",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -6706,6 +6810,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "views_markdowneditorview_swift",
+      "target": "views_markdowneditorview_quickmarkdownmenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/MarkdownEditorView.swift",
       "source_location": "L113",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6911,6 +7025,26 @@
       "relation": "case_of",
       "confidence": "EXTRACTED",
       "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "views_markdowneditorview_markdownhelper",
+      "target": "views_markdowneditorview_markdownhelper_quote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/MarkdownEditorView.swift",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "views_markdowneditorview_markdownhelper",
+      "target": "views_markdowneditorview_markdownhelper_wikilink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "case_of",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/MarkdownEditorView.swift",
       "source_location": "L117",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6981,11 +7115,21 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "Views/DocumentListView.swift",
-      "source_location": "L103",
+      "source_location": "L110",
       "weight": 1.0,
       "source": "views_documentlistview_swift",
-      "target": "views_documentlistview_documentemptystateview",
+      "target": "views_documentlistview_documentlistcontextheader",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Views/DocumentListView.swift",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "views_documentlistview_swift",
+      "target": "views_documentlistview_documentemptystateview"
     },
     {
       "relation": "method",
@@ -7003,9 +7147,9 @@
       "source_file": "Views/WorkspaceOnboardingView.swift",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "views_workspaceonboardingview_swift",
-      "target": "views_workspaceonboardingview_workspaceonboardingview",
-      "confidence_score": 1.0
+      "target": "views_workspaceonboardingview_workspaceonboardingview"
     },
     {
       "relation": "contains",
@@ -7013,9 +7157,9 @@
       "source_file": "Views/WorkspaceOnboardingView.swift",
       "source_location": "L118",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "views_workspaceonboardingview_swift",
-      "target": "views_workspaceonboardingview_workspacefolderrow",
-      "confidence_score": 1.0
+      "target": "views_workspaceonboardingview_workspacefolderrow"
     },
     {
       "relation": "contains",
@@ -7023,9 +7167,9 @@
       "source_file": "Views/WorkspaceOnboardingView.swift",
       "source_location": "L137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "views_workspaceonboardingview_swift",
-      "target": "views_workspaceonboardingview_onboardingstepview",
-      "confidence_score": 1.0
+      "target": "views_workspaceonboardingview_onboardingstepview"
     },
     {
       "relation": "contains",
@@ -10295,5 +10439,5 @@
       "source_file": "docs/system_prompt_ui_agent.md; docs/05-export-spec.md"
     }
   ],
-  "built_at_commit": "53b7651022bb7d792048a3242136f71511f9b5b1"
+  "built_at_commit": "b8307dc07f54a00a6a868b34968d57ab787804bd"
 }

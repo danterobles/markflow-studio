@@ -32,6 +32,8 @@ struct DesktopAppShellView: View {
             DocumentListView(
                 documents: documents,
                 links: links,
+                contextTitle: selectedFolderName ?? "All Documents",
+                contextSubtitle: selectedFolderName == nil ? "Workspace library" : "Folder",
                 selectedDocumentId: $selectedDocumentId,
                 actions: actions
             )
@@ -49,6 +51,11 @@ struct DesktopAppShellView: View {
 
     private var selectedDocument: MarkdownDocument? {
         documents.first { $0.id == selectedDocumentId }
+    }
+
+    private var selectedFolderName: String? {
+        guard let selectedFolderId else { return nil }
+        return folders.first { $0.id == selectedFolderId }?.name
     }
 
     private func brokenLinkCount(for document: MarkdownDocument) -> Int {
