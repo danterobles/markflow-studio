@@ -26,8 +26,19 @@ struct FolderSidebarView: View {
 
             Section("Folders") {
                 if folders.isEmpty {
-                    ContentUnavailableView("No Folders", systemImage: "folder", description: Text("Create a folder to organize documents."))
-                        .listRowBackground(Color.clear)
+                    VStack(alignment: .leading, spacing: 12) {
+                        ContentUnavailableView("No Folders", systemImage: "folder", description: Text("Create a folder to organize documents by topic, project, or client."))
+
+                        Button {
+                            folderActions.createFolder(nil)
+                        } label: {
+                            Label("Create First Folder", systemImage: "folder.badge.plus")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.small)
+                    }
+                    .listRowBackground(Color.clear)
                 } else {
                     ForEach(folderTreeItems) { item in
                         FolderRowView(item: item, isSelected: selectedFolderId == item.folder.id)

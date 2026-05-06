@@ -1,36 +1,41 @@
-# Graph Report - .  (2026-05-06)
+# Graph Report - MarkFlow Studio  (2026-05-06)
 
 ## Corpus Check
-- 59 files · ~50,059 words
+- 33 files · ~52,509 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 408 nodes · 562 edges · 21 communities (15 shown, 6 thin omitted)
+- 413 nodes · 570 edges · 21 communities (15 shown, 6 thin omitted)
 - Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 58 edges (avg confidence: 0.85)
-- Token cost: 777 input · 5,550 output
+- Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `53b76510`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_SwiftUI View Layer|SwiftUI View Layer]]
-- [[_COMMUNITY_App Orchestration Flow|App Orchestration Flow]]
-- [[_COMMUNITY_App Icon Variants|App Icon Variants]]
-- [[_COMMUNITY_Product Requirements|Product Requirements]]
-- [[_COMMUNITY_Markdown Preview Parser|Markdown Preview Parser]]
-- [[_COMMUNITY_Format Feedback Types|Format Feedback Types]]
-- [[_COMMUNITY_Content View Actions|Content View Actions]]
-- [[_COMMUNITY_Export Service Pipeline|Export Service Pipeline]]
-- [[_COMMUNITY_Export UI Design|Export UI Design]]
-- [[_COMMUNITY_Service Error Handling|Service Error Handling]]
-- [[_COMMUNITY_Workspace Folder Models|Workspace Folder Models]]
-- [[_COMMUNITY_Document Model Service|Document Model Service]]
-- [[_COMMUNITY_Liquid Glass Theme|Liquid Glass Theme]]
-- [[_COMMUNITY_Wiki Link Service|Wiki Link Service]]
-- [[_COMMUNITY_iPhone Navigation|iPhone Navigation]]
-- [[_COMMUNITY_Brand Visual Assets|Brand Visual Assets]]
-- [[_COMMUNITY_Workspace UX Feedback|Workspace UX Feedback]]
-- [[_COMMUNITY_App Entry Point|App Entry Point]]
-- [[_COMMUNITY_Architecture Guidance|Architecture Guidance]]
-- [[_COMMUNITY_Document Action Context|Document Action Context]]
-- [[_COMMUNITY_Folder Action Context|Folder Action Context]]
+- [[_COMMUNITY_Community 0|Community 0]]
+- [[_COMMUNITY_Community 1|Community 1]]
+- [[_COMMUNITY_Community 2|Community 2]]
+- [[_COMMUNITY_Community 3|Community 3]]
+- [[_COMMUNITY_Community 4|Community 4]]
+- [[_COMMUNITY_Community 5|Community 5]]
+- [[_COMMUNITY_Community 6|Community 6]]
+- [[_COMMUNITY_Community 7|Community 7]]
+- [[_COMMUNITY_Community 8|Community 8]]
+- [[_COMMUNITY_Community 9|Community 9]]
+- [[_COMMUNITY_Community 10|Community 10]]
+- [[_COMMUNITY_Community 11|Community 11]]
+- [[_COMMUNITY_Community 12|Community 12]]
+- [[_COMMUNITY_Community 13|Community 13]]
+- [[_COMMUNITY_Community 14|Community 14]]
+- [[_COMMUNITY_Community 15|Community 15]]
+- [[_COMMUNITY_Community 16|Community 16]]
+- [[_COMMUNITY_Community 17|Community 17]]
+- [[_COMMUNITY_Community 18|Community 18]]
+- [[_COMMUNITY_Community 19|Community 19]]
+- [[_COMMUNITY_Community 20|Community 20]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `ContentView` - 21 edges
@@ -63,63 +68,63 @@
 
 ## Communities (21 total, 6 thin omitted)
 
-### Community 0 - "SwiftUI View Layer"
+### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (23): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, DocumentDetailView, InspectorStatusView, LinkInspectorView (+15 more)
+Nodes (27): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, DocumentDetailView, InspectorStatusView, LinkInspectorView (+19 more)
 
-### Community 1 - "App Orchestration Flow"
+### Community 1 - "Community 1"
 Cohesion: 0.07
 Nodes (45): Liquid Glass UI Direction, Workspace Storage Separation, Layered Adaptive Background, Phased Implementation History, Content View App Orchestrator, Document Action Context, Folder Action Context, Wiki Link Sync Flow (+37 more)
 
-### Community 2 - "App Icon Variants"
+### Community 2 - "Community 2"
 Cohesion: 0.05
-Nodes (41): MarkFlow Studio 128 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol, MarkFlow Studio 16 Pixel App Icon Variant, Tiny Circular Blue Teal Gradient Badge, Tiny Blue Teal MarkFlow Visual Identity, Tiny White M With Upward Arrow Symbol (+33 more)
+Nodes (43): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, MarkFlow Studio 128 Pixel App Icon Variant (+35 more)
 
-### Community 3 - "Product Requirements"
+### Community 3 - "Community 3"
 Cohesion: 0.08
 Nodes (40): MVP Feature Scope, MarkFlow Studio Product Vision, Document CRUD And Search Requirements, Markdown HTML PDF Export Requirements, Folder Hierarchy And Move Requirements, Markdown Editing Helper Requirements, Markdown Preview Mode Requirements, Markdown Document Data Model (+32 more)
 
-### Community 4 - "Markdown Preview Parser"
+### Community 4 - "Community 4"
 Cohesion: 0.11
 Nodes (13): MarkdownInlineText, MarkdownListItem, MarkdownPreviewBlock, bulletList, checklist, codeBlock, heading, image (+5 more)
 
-### Community 5 - "Format Feedback Types"
+### Community 5 - "Community 5"
 Cohesion: 0.09
 Nodes (24): CaseIterable, Equatable, Identifiable, ExportFormat, html, markdown, pdf, AppFeedback (+16 more)
 
-### Community 6 - "Content View Actions"
+### Community 6 - "Community 6"
 Cohesion: 0.14
 Nodes (4): ContentView, FolderSheet, create, rename
 
-### Community 8 - "Export UI Design"
+### Community 8 - "Community 8"
 Cohesion: 0.13
 Nodes (19): Document and Folder Export, Export File Handling Considerations, Export Formats, Export Spec, HTML Export Pipeline, Internal Link Preservation, PDF From HTML Rendering, Markdown Editor User Experience (+11 more)
 
-### Community 9 - "Service Error Handling"
+### Community 9 - "Community 9"
 Cohesion: 0.14
 Nodes (8): LocalizedError, ExportError, couldNotCreatePDF, missingWorkspace, FolderError, invalidHierarchy, FolderService, FolderTreeItem
 
-### Community 10 - "Workspace Folder Models"
+### Community 10 - "Community 10"
 Cohesion: 0.14
 Nodes (6): Codable, MarkdownFolder, WorkspaceSettings, WorkspaceConfig, WorkspaceService, MarkFlowPreviewData
 
-### Community 12 - "Liquid Glass Theme"
+### Community 12 - "Community 12"
 Cohesion: 0.16
 Nodes (7): ViewModifier, GlassPanelModifier, View, GlassCapsuleStyle, MarkFlowTheme, NoteCardStyle, View
 
-### Community 14 - "iPhone Navigation"
+### Community 14 - "Community 14"
 Cohesion: 0.18
 Nodes (6): Hashable, DocumentStackView, PhoneAppShellView, PhoneRoute, document, documents
 
-### Community 15 - "Brand Visual Assets"
-Cohesion: 0.2
-Nodes (10): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, Circular Blue Teal Gradient Badge (+2 more)
-
-### Community 16 - "Workspace UX Feedback"
+### Community 15 - "Community 15"
 Cohesion: 0.29
 Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings Data Model, Immediate Visual Feedback UX, Separated Workspace Database Assets Exports Config Layout, User Selected Workspace Storage Requirement, App Feedback Model, Feedback Banner View, Workspace Status Card
 
-### Community 18 - "Architecture Guidance"
+### Community 16 - "Community 16"
+Cohesion: 0.25
+Nodes (8): MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol, MarkFlow Studio 32 Pixel App Icon Variant, Small Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, Small White M With Upward Arrow Symbol
+
+### Community 18 - "Community 18"
 Cohesion: 0.67
 Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdown Workspace
 
@@ -131,17 +136,17 @@ Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdow
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `FolderTreeItem` connect `Service Error Handling` to `Format Feedback Types`?**
-  _High betweenness centrality (0.110) - this node is a cross-community bridge._
-- **Why does `MarkdownFolder` connect `Workspace Folder Models` to `Service Error Handling`?**
+- **Why does `FolderTreeItem` connect `Community 9` to `Community 5`?**
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
+- **Why does `MarkdownFolder` connect `Community 10` to `Community 9`?**
   _High betweenness centrality (0.099) - this node is a cross-community bridge._
 - **What connects `create`, `MarkFlowTheme`, `heading` to the rest of the system?**
   _86 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `SwiftUI View Layer` be split into smaller, more focused modules?**
+- **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
-- **Should `App Orchestration Flow` be split into smaller, more focused modules?**
+- **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.07 - nodes in this community are weakly interconnected._
-- **Should `App Icon Variants` be split into smaller, more focused modules?**
+- **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
-- **Should `Product Requirements` be split into smaller, more focused modules?**
+- **Should `Community 3` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._

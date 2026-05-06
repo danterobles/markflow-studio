@@ -19,14 +19,9 @@ struct DocumentListView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             if visibleDocuments.isEmpty {
-                ContentUnavailableView(
-                    searchText.isEmpty ? "No Documents" : "No Results",
-                    systemImage: searchText.isEmpty ? "doc.text" : "magnifyingglass",
-                    description: Text(searchText.isEmpty ? "Create a document to start writing Markdown." : "Try a different title or content search.")
-                )
-                .padding(28)
-                .glassPanel(cornerRadius: MarkFlowTheme.panelRadius)
-                .padding(24)
+                DocumentEmptyStateView(searchText: searchText) {
+                    actions.addDocument(nil)
+                }
             } else {
                 List(selection: $selectedDocumentId) {
                     ForEach(visibleDocuments) { document in
@@ -102,5 +97,44 @@ struct DocumentListView: View {
 
     private func brokenLinkCount(for document: MarkdownDocument) -> Int {
         links.filter { $0.sourceDocumentId == document.id && $0.isBroken }.count
+    }
+}
+
+struct DocumentEmptyStateView: View {
+    let searchText: String
+    let addDocument: () -> Void
+
+    private var isSearching: Bool {
+        !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    var body: some View {
+        VStack(spacing: 18) {
+            ContentUnavailableView(
+                isSearching ? "No Results" : "No Documents Yet",
+                systemImage: isSearching ? "magnifyingglass" : "doc.text",
+                description: Text(isSearching ? "Try a different title or content search." : "Create your first Markdown note, then switch to preview or export when ready.")
+            )
+
+            if !isSearching {
+                VStack(spacing: 10) {
+                    Button(action: addDocument) {
+                        Label("Create First Document", systemImage: "plus")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                    Text("Tip: use [[Document Title]] later to connect notes with wiki links.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(maxWidth: 360)
+            }
+        }
+        .padding(28)
+        .glassPanel(cornerRadius: MarkFlowTheme.panelRadius)
+        .padding(24)
+        .accessibilityElement(children: .contain)
     }
 }

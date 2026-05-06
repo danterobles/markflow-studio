@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-05-06
+
+### Mayo Mejora — Etapa 1: Workspace Onboarding And Empty States
+
+- Added a dedicated workspace onboarding screen shown before the main app shell when no workspace is configured.
+- Explained the local workspace layout (`database/`, `assets/`, `exports/`, and `config.json`) directly in the onboarding UI.
+- Added first-use guidance for creating folders, writing Markdown, previewing, and exporting.
+- Hid the regular folder/document/editor controls until a workspace is selected to avoid unusable actions during first launch.
+- Improved workspace setup error copy with a clearer recovery action.
+- Added direct create actions to empty folder and document states on regular and compact layouts.
+- Added first-document guidance that introduces wiki-style `[[Document Title]]` links.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

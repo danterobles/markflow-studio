@@ -71,15 +71,22 @@ struct ContentView: View {
 
     @ViewBuilder
     private var appShell: some View {
-#if os(macOS)
-        desktopShell
-#else
-        if horizontalSizeClass == .compact {
-            phoneShell
+        if activeWorkspace == nil {
+            WorkspaceOnboardingView(
+                errorMessage: workspaceErrorMessage,
+                selectWorkspace: selectWorkspace
+            )
         } else {
+#if os(macOS)
             desktopShell
-        }
+#else
+            if horizontalSizeClass == .compact {
+                phoneShell
+            } else {
+                desktopShell
+            }
 #endif
+        }
     }
 
     private var desktopShell: some View {
@@ -155,8 +162,8 @@ struct ContentView: View {
             workspaceErrorMessage = nil
             showFeedback("Workspace ready", kind: .success)
         } catch {
-            workspaceErrorMessage = "Could not configure workspace: \(error.localizedDescription)"
-            showFeedback("Workspace setup failed", kind: .error)
+            workspaceErrorMessage = "Workspace setup failed. Choose a folder you can write to, then try again. Details: \(error.localizedDescription)"
+            showFeedback("Workspace setup needs attention", kind: .error)
         }
     }
 
@@ -170,7 +177,7 @@ struct ContentView: View {
             }
             showFeedback("Document created", kind: .success)
         } catch {
-            showFeedback("Document creation failed", kind: .error)
+            showFeedback("Document creation failed. Check workspace permissions and try again.", kind: .error)
         }
     }
 
@@ -238,7 +245,7 @@ struct ContentView: View {
             selectedFolderId = folder.id
             showFeedback("Folder created", kind: .success)
         } catch {
-            showFeedback("Folder creation failed", kind: .error)
+            showFeedback("Folder creation failed. Check workspace permissions and try again.", kind: .error)
         }
     }
 

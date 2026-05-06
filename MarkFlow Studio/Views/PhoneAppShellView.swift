@@ -42,8 +42,18 @@ struct PhoneAppShellView: View {
 
                 Section("Folders") {
                     if folders.isEmpty {
-                        ContentUnavailableView("No Folders", systemImage: "folder", description: Text("Create a folder to organize documents."))
-                            .listRowBackground(Color.clear)
+                        VStack(alignment: .leading, spacing: 12) {
+                            ContentUnavailableView("No Folders", systemImage: "folder", description: Text("Create a folder to organize documents by topic, project, or client."))
+
+                            Button {
+                                folderActions.createFolder(nil)
+                            } label: {
+                                Label("Create First Folder", systemImage: "folder.badge.plus")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        .listRowBackground(Color.clear)
                     } else {
                         ForEach(folderTreeItems) { item in
                             NavigationLink(value: PhoneRoute.documents(item.folder.id)) {
@@ -151,14 +161,10 @@ private struct DocumentStackView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             if visibleDocuments.isEmpty {
-                ContentUnavailableView(
-                    searchText.isEmpty ? "No Documents" : "No Results",
-                    systemImage: searchText.isEmpty ? "doc.text" : "magnifyingglass",
-                    description: Text(searchText.isEmpty ? "Create a document to start writing Markdown." : "Try a different title or content search.")
+                DocumentEmptyStateView(
+                    searchText: searchText,
+                    addDocument: addDocumentAndOpen
                 )
-                .padding(28)
-                .glassPanel(cornerRadius: MarkFlowTheme.panelRadius)
-                .padding(24)
             } else {
                 List {
                     ForEach(visibleDocuments) { document in
