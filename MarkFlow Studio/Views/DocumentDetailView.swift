@@ -156,46 +156,60 @@ private struct LinkInspectorView: View {
         WikiLinkService.outgoingLinks(from: document, links: links)
     }
 
+    private var resolvedOutgoingLinks: [MarkdownLink] {
+        outgoingLinks.filter { !$0.isBroken && $0.targetDocumentId != nil }
+    }
+
+    private var brokenLinks: [MarkdownLink] {
+        outgoingLinks.filter(\.isBroken)
+    }
+
     private var backlinks: [MarkdownDocument] {
         WikiLinkService.backlinks(to: document, documents: documents, links: links)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Label("Internal Links", systemImage: "link")
-                .font(.headline)
+            HStack(alignment: .firstTextBaseline) {
+                Label("Internal Links", systemImage: "link")
+                    .font(.headline)
+                Spacer()
+                Text("\(resolvedOutgoingLinks.count) out · \(backlinks.count) back · \(brokenLinks.count) broken")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.secondary)
+            }
 
             if outgoingLinks.isEmpty && backlinks.isEmpty {
-                Text("No wiki links yet. Use [[Document Title]] to connect notes.")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("No wiki links yet.")
+                        .font(.callout.weight(.semibold))
+                    Text("Use [[Document Title]] to connect notes. Broken links can become new documents from this panel.")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                }
             } else {
-                if !outgoingLinks.isEmpty {
+                if !brokenLinks.isEmpty {
+                    LinkSectionView(
+                        title: "Broken Links",
+                        subtitle: "Create missing targets without leaving this document.",
+                        links: brokenLinks,
+                        document: document,
+                        actions: actions
+                    )
+                }
+
+                if !resolvedOutgoingLinks.isEmpty {
                     LinkSectionView(
                         title: "Outgoing",
-                        links: outgoingLinks,
+                        subtitle: "Open documents referenced from this note.",
+                        links: resolvedOutgoingLinks,
                         document: document,
                         actions: actions
                     )
                 }
 
                 if !backlinks.isEmpty {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Backlinks")
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(.secondary)
-
-                        ForEach(backlinks) { backlink in
-                            Button {
-                                actions.navigateToDocument(backlink.id)
-                            } label: {
-                                Label(backlink.title, systemImage: "arrow.uturn.backward")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .buttonStyle(.bordered)
-                            .controlSize(.small)
-                        }
-                    }
+                    BacklinkSectionView(backlinks: backlinks, actions: actions)
                 }
             }
         }
@@ -204,8 +218,41 @@ private struct LinkInspectorView: View {
     }
 }
 
+private struct BacklinkSectionView: View {
+    let backlinks: [MarkdownDocument]
+    let actions: DocumentActionContext
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Backlinks")
+                .font(.subheadline.weight(.semibold))
+
+            Text("Documents that already reference this note.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            ForEach(backlinks) { backlink in
+                Button {
+                    actions.navigateToDocument(backlink.id)
+                } label: {
+                    HStack {
+                        Label(backlink.title, systemImage: "arrow.uturn.backward")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("\(backlink.wordCount) words")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+            }
+        }
+    }
+}
+
 private struct LinkSectionView: View {
     let title: String
+    let subtitle: String
     let links: [MarkdownLink]
     let document: MarkdownDocument
     let actions: DocumentActionContext
@@ -214,12 +261,20 @@ private struct LinkSectionView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.subheadline.weight(.semibold))
+
+            Text(subtitle)
+                .font(.caption)
                 .foregroundStyle(.secondary)
 
             ForEach(links) { link in
                 HStack(spacing: 10) {
-                    Label(link.targetTitle, systemImage: link.isBroken ? "link.badge.plus" : "doc.text")
-                        .foregroundStyle(link.isBroken ? .orange : .primary)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Label(link.targetTitle, systemImage: link.isBroken ? "link.badge.plus" : "doc.text")
+                            .foregroundStyle(link.isBroken ? .orange : .primary)
+                        Text(link.isBroken ? "Missing target document" : "Resolved internal link")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                     Spacer()
 
                     if let targetDocumentId = link.targetDocumentId, !link.isBroken {
@@ -238,7 +293,7 @@ private struct LinkSectionView: View {
                 }
                 .font(.callout)
                 .padding(10)
-                .background(Color.primary.opacity(0.05), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                .background((link.isBroken ? Color.orange : Color.primary).opacity(0.06), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
             }
         }
     }

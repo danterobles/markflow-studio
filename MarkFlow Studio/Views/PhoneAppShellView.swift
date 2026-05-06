@@ -42,8 +42,18 @@ struct PhoneAppShellView: View {
 
                 Section("Folders") {
                     if folders.isEmpty {
-                        ContentUnavailableView("No Folders", systemImage: "folder", description: Text("Create a folder to organize documents."))
-                            .listRowBackground(Color.clear)
+                        VStack(alignment: .leading, spacing: 12) {
+                            ContentUnavailableView("No Folders", systemImage: "folder", description: Text("Create a folder to organize documents by topic, project, or client."))
+
+                            Button {
+                                folderActions.createFolder(nil)
+                            } label: {
+                                Label("Create First Folder", systemImage: "folder.badge.plus")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        .listRowBackground(Color.clear)
                     } else {
                         ForEach(folderTreeItems) { item in
                             NavigationLink(value: PhoneRoute.documents(item.folder.id)) {
@@ -97,6 +107,7 @@ struct PhoneAppShellView: View {
                         documents: documents(for: folderId),
                         links: links,
                         folderId: folderId,
+                        folderName: folderName(for: folderId),
                         selectedDocumentId: $selectedDocumentId,
                         path: $path,
                         actions: actions
@@ -125,6 +136,11 @@ struct PhoneAppShellView: View {
         return documents.filter { $0.folderId == folderId }
     }
 
+    private func folderName(for folderId: UUID?) -> String? {
+        guard let folderId else { return nil }
+        return folders.first { $0.id == folderId }?.name
+    }
+
     private func brokenLinkCount(for documentId: UUID) -> Int {
         links.filter { $0.sourceDocumentId == documentId && $0.isBroken }.count
     }
@@ -139,26 +155,27 @@ private struct DocumentStackView: View {
     let documents: [MarkdownDocument]
     let links: [MarkdownLink]
     let folderId: UUID?
+    let folderName: String?
     @Binding var selectedDocumentId: UUID?
     @Binding var path: [PhoneRoute]
     let actions: DocumentActionContext
     @State private var searchText = ""
+    @State private var sortOption: DocumentSortOption = .modified
+    @State private var filterOption: DocumentFilterOption = .all
+    @State private var documentPendingDelete: MarkdownDocument?
 
     private var visibleDocuments: [MarkdownDocument] {
-        DocumentService.search(documents, query: searchText)
+        let filteredDocuments = documents.filter { filterOption.includes($0, links: links) }
+        return sortOption.sort(DocumentService.search(filteredDocuments, query: searchText))
     }
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             if visibleDocuments.isEmpty {
-                ContentUnavailableView(
-                    searchText.isEmpty ? "No Documents" : "No Results",
-                    systemImage: searchText.isEmpty ? "doc.text" : "magnifyingglass",
-                    description: Text(searchText.isEmpty ? "Create a document to start writing Markdown." : "Try a different title or content search.")
+                DocumentEmptyStateView(
+                    searchText: searchText,
+                    addDocument: addDocumentAndOpen
                 )
-                .padding(28)
-                .glassPanel(cornerRadius: MarkFlowTheme.panelRadius)
-                .padding(24)
             } else {
                 List {
                     ForEach(visibleDocuments) { document in
@@ -166,14 +183,15 @@ private struct DocumentStackView: View {
                             DocumentCardView(
                                 document: document,
                                 isSelected: selectedDocumentId == document.id,
-                                brokenLinkCount: brokenLinkCount(for: document)
+                                brokenLinkCount: brokenLinkCount(for: document),
+                                backlinkCount: backlinkCount(for: document)
                             )
                         }
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
-                                actions.deleteDocument(document)
+                                documentPendingDelete = document
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -200,7 +218,7 @@ private struct DocumentStackView: View {
                             }
 
                             Button(role: .destructive) {
-                                actions.deleteDocument(document)
+                                documentPendingDelete = document
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -219,8 +237,38 @@ private struct DocumentStackView: View {
             .padding()
         }
         .background(AppBackgroundView())
-        .navigationTitle("Documents")
+        .navigationTitle(folderName ?? "All Documents")
+        .safeAreaInset(edge: .top, spacing: 0) {
+            VStack(spacing: 0) {
+                CompactBreadcrumbView(folderName: folderName, documentCount: visibleDocuments.count)
+                DocumentOrganizationBar(sortOption: $sortOption, filterOption: $filterOption)
+            }
+        }
         .searchable(text: $searchText, prompt: "Search title or content")
+        .confirmationDialog(
+            "Move Document to Trash?",
+            isPresented: Binding(
+                get: { documentPendingDelete != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        documentPendingDelete = nil
+                    }
+                }
+            ),
+            titleVisibility: .visible
+        ) {
+            if let documentPendingDelete {
+                Button("Move \"\(documentPendingDelete.title)\" to Trash", role: .destructive) {
+                    actions.deleteDocument(documentPendingDelete)
+                    self.documentPendingDelete = nil
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                documentPendingDelete = nil
+            }
+        } message: {
+            Text("This keeps the document recoverable in the soft-delete model while removing it from active lists.")
+        }
         .tint(MarkFlowTheme.accent)
         .toolbar {
             ToolbarItem {
@@ -237,11 +285,46 @@ private struct DocumentStackView: View {
         links.filter { $0.sourceDocumentId == document.id && $0.isBroken }.count
     }
 
+    private func backlinkCount(for document: MarkdownDocument) -> Int {
+        links.filter { $0.targetDocumentId == document.id && !$0.isBroken }.count
+    }
+
     private func addDocumentAndOpen() {
         let previousDocumentId = selectedDocumentId
         actions.addDocument(folderId)
 
         guard let newDocumentId = selectedDocumentId, newDocumentId != previousDocumentId else { return }
         path.append(.document(newDocumentId))
+    }
+}
+
+private struct CompactBreadcrumbView: View {
+    let folderName: String?
+    let documentCount: Int
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Label(folderName == nil ? "Workspace" : "Folder", systemImage: folderName == nil ? "tray.full" : "folder")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(MarkFlowTheme.accent)
+
+            Text(folderName ?? "All Documents")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+
+            Spacer()
+
+            Text("\(documentCount)")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.secondary.opacity(0.12), in: Capsule())
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 8)
+        .background(.bar)
+        .accessibilityElement(children: .combine)
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		946CE0BB2FA918D500ACB984 /* MarkFlow Studio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MarkFlow Studio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000012FAE000000000001 /* MarkFlow StudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MarkFlow StudioTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +17,22 @@
 			path = "MarkFlow Studio";
 			sourceTree = "<group>";
 		};
+		A10000022FAE000000000001 /* MarkFlow StudioTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "MarkFlow StudioTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		946CE0B82FA918D500ACB984 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000032FAE000000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				946CE0BD2FA918D500ACB984 /* MarkFlow Studio */,
+				A10000022FAE000000000001 /* MarkFlow StudioTests */,
 				946CE0BC2FA918D500ACB984 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,11 +55,22 @@
 			isa = PBXGroup;
 			children = (
 				946CE0BB2FA918D500ACB984 /* MarkFlow Studio.app */,
+				A10000012FAE000000000001 /* MarkFlow StudioTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXContainerItemProxy section */
+		A10000042FAE000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 946CE0B32FA918D500ACB984 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 946CE0BA2FA918D500ACB984;
+			remoteInfo = "MarkFlow Studio";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXNativeTarget section */
 		946CE0BA2FA918D500ACB984 /* MarkFlow Studio */ = {
@@ -70,6 +95,29 @@
 			productReference = 946CE0BB2FA918D500ACB984 /* MarkFlow Studio.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A10000052FAE000000000001 /* MarkFlow StudioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A100000A2FAE000000000001 /* Build configuration list for PBXNativeTarget "MarkFlow StudioTests" */;
+			buildPhases = (
+				A10000062FAE000000000001 /* Sources */,
+				A10000032FAE000000000001 /* Frameworks */,
+				A10000072FAE000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10000082FAE000000000001 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A10000022FAE000000000001 /* MarkFlow StudioTests */,
+			);
+			name = "MarkFlow StudioTests";
+			packageProductDependencies = (
+			);
+			productName = "MarkFlow StudioTests";
+			productReference = A10000012FAE000000000001 /* MarkFlow StudioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					946CE0BA2FA918D500ACB984 = {
 						CreatedOnToolsVersion = 26.4.1;
+					};
+					A10000052FAE000000000001 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 946CE0BA2FA918D500ACB984;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				946CE0BA2FA918D500ACB984 /* MarkFlow Studio */,
+				A10000052FAE000000000001 /* MarkFlow StudioTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		946CE0B92FA918D500ACB984 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000072FAE000000000001 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A10000062FAE000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A10000082FAE000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 946CE0BA2FA918D500ACB984 /* MarkFlow Studio */;
+			targetProxy = A10000042FAE000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		946CE0C62FA918D600ACB984 /* Debug */ = {
@@ -353,6 +428,66 @@
 			};
 			name = Release;
 		};
+		A100000B2FAE000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4K74G73M7S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "guru.robles.MarkFlow-StudioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkFlow Studio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MarkFlow Studio";
+				XROS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Debug;
+		};
+		A100000C2FAE000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4K74G73M7S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "guru.robles.MarkFlow-StudioTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkFlow Studio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MarkFlow Studio";
+				XROS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -370,6 +505,15 @@
 			buildConfigurations = (
 				946CE0C92FA918D600ACB984 /* Debug */,
 				946CE0CA2FA918D600ACB984 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A100000A2FAE000000000001 /* Build configuration list for PBXNativeTarget "MarkFlow StudioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000B2FAE000000000001 /* Debug */,
+				A100000C2FAE000000000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

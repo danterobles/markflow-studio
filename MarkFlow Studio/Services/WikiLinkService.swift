@@ -17,7 +17,7 @@ enum WikiLinkService {
             .filter { $0.sourceDocumentId == document.id }
             .forEach { context.delete($0) }
 
-        let activeDocuments = documents.filter { !$0.isDeleted }
+        let activeDocuments = documents.filter { !$0.isSoftDeleted }
         let targetTitles = parseTargetTitles(in: document.content)
 
         for title in targetTitles {
@@ -38,7 +38,7 @@ enum WikiLinkService {
             context.delete(link)
         }
 
-        let activeDocuments = documents.filter { !$0.isDeleted }
+        let activeDocuments = documents.filter { !$0.isSoftDeleted }
         for document in activeDocuments {
             for title in parseTargetTitles(in: document.content) {
                 let target = activeDocuments.first { $0.title.localizedCaseInsensitiveCompare(title) == .orderedSame }
@@ -59,7 +59,7 @@ enum WikiLinkService {
             link.targetDocumentId == document.id ? link.sourceDocumentId : nil
         })
         return documents
-            .filter { sourceIds.contains($0.id) && !$0.isDeleted }
+            .filter { sourceIds.contains($0.id) && !$0.isSoftDeleted }
             .sorted { $0.updatedAt > $1.updatedAt }
     }
 
@@ -83,7 +83,7 @@ enum WikiLinkService {
     static func updateReferences(from oldTitle: String, to newTitle: String, in documents: [MarkdownDocument], context: ModelContext) throws {
         guard oldTitle.localizedCaseInsensitiveCompare(newTitle) != .orderedSame else { return }
 
-        for document in documents where !document.isDeleted {
+        for document in documents where !document.isSoftDeleted {
             let updatedContent = replacingWikiLinks(in: document.content, oldTitle: oldTitle, newTitle: newTitle)
             if updatedContent != document.content {
                 document.updateContent(updatedContent)

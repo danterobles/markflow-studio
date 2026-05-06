@@ -9,6 +9,7 @@ struct DocumentCardView: View {
     let document: MarkdownDocument
     let isSelected: Bool
     let brokenLinkCount: Int
+    var backlinkCount = 0
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -22,6 +23,11 @@ struct DocumentCardView: View {
                         .font(.caption2.weight(.semibold))
                         .foregroundStyle(.orange)
                         .accessibilityLabel("\(brokenLinkCount) broken links")
+                } else if backlinkCount > 0 {
+                    Label("\(backlinkCount)", systemImage: "arrow.uturn.backward")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(MarkFlowTheme.accent)
+                        .accessibilityLabel("\(backlinkCount) backlinks")
                 }
             }
 
@@ -37,11 +43,16 @@ struct DocumentCardView: View {
                     if brokenLinkCount > 0 {
                         MetadataPill(title: "\(brokenLinkCount) broken", systemImage: "link.badge.plus", tint: .orange)
                     }
+                    if backlinkCount > 0 {
+                        MetadataPill(title: "\(backlinkCount) back", systemImage: "arrow.uturn.backward", tint: MarkFlowTheme.accent)
+                    }
                 }
             }
         }
         .noteCardStyle(isSelected: isSelected)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+        .accessibilityValue(isSelected ? "Selected" : "")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
@@ -52,6 +63,24 @@ struct DocumentCardView: View {
 
     private var updatedDateText: String {
         document.updatedAt.formatted(Date.FormatStyle(date: .abbreviated, time: .omitted))
+    }
+
+    private var accessibilitySummary: String {
+        var parts = [
+            document.title,
+            "\(document.wordCount) words",
+            "Updated \(updatedDateText)"
+        ]
+
+        if brokenLinkCount > 0 {
+            parts.append("\(brokenLinkCount) broken links")
+        }
+
+        if backlinkCount > 0 {
+            parts.append("\(backlinkCount) backlinks")
+        }
+
+        return parts.joined(separator: ", ")
     }
 }
 

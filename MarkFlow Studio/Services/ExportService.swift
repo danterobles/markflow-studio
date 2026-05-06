@@ -80,7 +80,7 @@ enum ExportService {
         let folderDocuments = documents
             .filter { document in
                 guard let folderId = document.folderId else { return false }
-                return folderIds.contains(folderId) && !document.isDeleted
+                return folderIds.contains(folderId) && !document.isSoftDeleted
             }
             .sorted { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
 
@@ -150,7 +150,7 @@ enum ExportService {
 
             let title = content[openingRange.upperBound..<closingRange.lowerBound]
                 .trimmingCharacters(in: .whitespacesAndNewlines)
-            if let target = documents.first(where: { !$0.isDeleted && $0.title.localizedCaseInsensitiveCompare(title) == .orderedSame }) {
+            if let target = documents.first(where: { !$0.isSoftDeleted && $0.title.localizedCaseInsensitiveCompare(title) == .orderedSame }) {
                 result += "[\(target.title)](\(slug(target.title)).\(fileExtension))"
             } else {
                 result += "[\(title)](\(slug(title)).\(fileExtension))"

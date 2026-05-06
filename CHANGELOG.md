@@ -1,5 +1,97 @@
 # Changelog
 
+## 2026-05-06
+
+### Mayo Mejora — Etapa 1: Workspace Onboarding And Empty States
+
+- Added a dedicated workspace onboarding screen shown before the main app shell when no workspace is configured.
+- Explained the local workspace layout (`database/`, `assets/`, `exports/`, and `config.json`) directly in the onboarding UI.
+- Added first-use guidance for creating folders, writing Markdown, previewing, and exporting.
+- Hid the regular folder/document/editor controls until a workspace is selected to avoid unusable actions during first launch.
+- Improved workspace setup error copy with a clearer recovery action.
+- Added direct create actions to empty folder and document states on regular and compact layouts.
+- Added first-document guidance that introduces wiki-style `[[Document Title]]` links.
+
+### Mayo Mejora — Etapa 2: Compact Navigation And Writing Shortcuts
+
+- Added contextual document-list headers that show whether the user is viewing the whole workspace or a specific folder.
+- Updated compact iPhone document navigation titles to use the active folder name or `All Documents`.
+- Added a compact breadcrumb strip on iPhone document lists with workspace/folder context and visible document count.
+- Added regular-width document-list context with folder/workspace label and visible document count.
+- Added quick Markdown insertion from the editor header for common writing actions.
+- Added Markdown helpers for wiki links (`[[Document Title]]`) and block quotes.
+
+### Mayo Mejora — Etapa 3: Actionable Internal Links And Backlinks
+
+- Split the internal-links inspector into broken links, resolved outgoing links, and backlinks for clearer navigation.
+- Added a summary count for outgoing, backlink, and broken-link states in the document inspector.
+- Made broken links more actionable with clearer missing-target copy and create actions grouped first.
+- Added backlink rows with source document metadata and direct navigation.
+- Added backlink counts to document cards so connected notes are visible from document lists.
+- Kept broken-link badges prioritized on cards while surfacing backlink badges when no broken links need attention.
+
+### Mayo Mejora — Etapa 4: Guided Export Preflight
+
+- Added an `ExportPreflightSheet` that turns document and folder export actions into a confirmed review flow.
+- Added preflight details for workspace destination, output path, included document count, resolved links, broken links, and asset references.
+- Kept document exports selectable across Markdown, HTML, and PDF while explaining each format in the sheet.
+- Documented folder export as a Markdown batch export before confirmation.
+- Routed existing document and folder export menus through the preflight sheet before writing files.
+- Improved export success feedback to include the selected format for document exports.
+
+### Mayo Mejora — Etapa 5: Core Service Unit Tests
+
+- Added a `MarkFlow StudioTests` unit test target to the Xcode project and included it in the existing scheme test action.
+- Added in-memory SwiftData test support for service-level tests without touching user workspaces.
+- Covered `DocumentService` create, rename, update, duplicate, soft delete, and search behavior.
+- Covered `FolderService` hierarchy flattening, document moves, folder moves, and invalid cycle blocking.
+- Covered `WikiLinkService` link sync, outgoing links, backlinks, broken-link document creation, and reference updates.
+- Covered `ExportService` Markdown, HTML, and folder export behavior with temporary workspace fixtures.
+- Renamed the document soft-delete model property to `isSoftDeleted` with `@Attribute(originalName: "isDeleted")` to avoid SwiftData runtime state conflicts while preserving persisted storage naming.
+
+### Mayo Mejora — Etapa 6: Feedback Mapping And ContentView Refactor
+
+- Added `AppFeedbackMessage` as a presentation-layer mapper for common success, warning, and error feedback.
+- Extended `AppFeedback.Kind` with informational and warning states so UI feedback can distinguish recoverable problems from failures.
+- Routed `ContentView` feedback through typed messages instead of repeated inline strings.
+- Added a warning feedback path when linked-document navigation cannot find the target document.
+- Kept service types independent from visual presentation while making recoverable errors easier to test.
+- Added unit tests for feedback message kinds and recoverable error copy.
+
+### Mayo Mejora — Etapa 7: Liquid Glass Accessibility Pass
+
+- Improved glass panel and capsule surfaces for Increase Contrast and Reduce Transparency accessibility settings.
+- Disabled card hover scaling when Reduce Motion is active while preserving selection feedback.
+- Strengthened selected and bordered note-card contrast under increased contrast settings.
+- Added clearer VoiceOver summaries for document cards, including selected state, word count, updated date, broken links, and backlinks.
+- Improved checklist and image accessibility in Markdown preview with explicit labels and values.
+- Added current-location VoiceOver state when moving documents between folders.
+
+### Mayo Mejora — Etapa 8: Editor And Preview Performance
+
+- Debounced Markdown preview parsing so long documents do not reparse on every transient typing update.
+- Added task cancellation for stale preview parse work when newer editor content arrives.
+- Made preview block rendering equatable so unchanged blocks can be skipped more cheaply by SwiftUI.
+- Replaced per-parse UUID list identities with stable item indexes to reduce diff churn in bullet and checklist preview rows.
+- Added parser tests for common technical Markdown fixtures and stable list identities.
+
+### Mayo Mejora — Etapa 9: Document Organization Controls
+
+- Added document sorting by modified date, title, and word count.
+- Added quick filters for all documents, recent documents, unfiled documents, and documents with broken links.
+- Applied the same organization controls to regular and compact document lists.
+- Added searchable folder selection when moving documents so large folder trees are easier to navigate.
+- Added confirmation dialogs before soft-deleting documents from list rows and swipe actions.
+- Added tests for document sort and filter rules.
+
+### Mayo Mejora — Etapa 10: Writing Assistance
+
+- Added an editor assistance bar with visible word count and autosave status.
+- Added in-document search directly in the Markdown editor surface.
+- Added live match counts and the first matching line so long notes are easier to scan while writing.
+- Added reusable `MarkdownTextMetrics` utilities for word counting and document search metrics.
+- Added tests for word counting, case/diacritic-insensitive matching, and first matching line extraction.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

@@ -34,6 +34,8 @@ enum MarkFlowTheme {
 struct NoteCardStyle: ViewModifier {
     let isSelected: Bool
     @State private var isHovered = false
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func body(content: Content) -> some View {
         content
@@ -51,35 +53,54 @@ struct NoteCardStyle: ViewModifier {
                     .padding(.vertical, 8)
             }
             .shadow(color: .black.opacity(isHovered ? 0.10 : 0.05), radius: isHovered ? 16 : 8, y: isHovered ? 8 : 4)
-            .scaleEffect(isHovered ? 1.01 : 1)
-            .animation(.spring(response: 0.28, dampingFraction: 0.86), value: isHovered)
-            .animation(.spring(response: 0.28, dampingFraction: 0.86), value: isSelected)
+            .scaleEffect(reduceMotion ? 1 : (isHovered ? 1.01 : 1))
+            .animation(reduceMotion ? nil : .spring(response: 0.28, dampingFraction: 0.86), value: isHovered)
+            .animation(reduceMotion ? nil : .spring(response: 0.28, dampingFraction: 0.86), value: isSelected)
             .onHover { isHovered = $0 }
     }
 
     private var cardBackground: some ShapeStyle {
         if isSelected {
-            return AnyShapeStyle(MarkFlowTheme.accent.opacity(0.16))
+            return AnyShapeStyle(MarkFlowTheme.accent.opacity(colorSchemeContrast == .increased ? 0.24 : 0.16))
         }
-        return AnyShapeStyle(Color.secondary.opacity(isHovered ? 0.10 : 0.05))
+        return AnyShapeStyle(Color.secondary.opacity(colorSchemeContrast == .increased ? 0.12 : (isHovered ? 0.10 : 0.05)))
     }
 
     private var borderColor: Color {
-        isSelected ? MarkFlowTheme.accent.opacity(0.45) : Color.primary.opacity(isHovered ? 0.12 : 0.06)
+        if isSelected {
+            return MarkFlowTheme.accent.opacity(colorSchemeContrast == .increased ? 0.70 : 0.45)
+        }
+
+        return Color.primary.opacity(colorSchemeContrast == .increased ? 0.22 : (isHovered ? 0.12 : 0.06))
     }
 }
 
 struct GlassCapsuleStyle: ViewModifier {
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+
     func body(content: Content) -> some View {
         content
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(.ultraThinMaterial, in: Capsule(style: .continuous))
+            .background(capsuleBackground, in: Capsule(style: .continuous))
             .overlay {
                 Capsule(style: .continuous)
-                    .stroke(.white.opacity(0.18), lineWidth: 1)
+                    .stroke(borderColor, lineWidth: colorSchemeContrast == .increased ? 1.5 : 1)
             }
             .shadow(color: .black.opacity(0.08), radius: 14, y: 8)
+    }
+
+    private var capsuleBackground: AnyShapeStyle {
+        if reduceTransparency {
+            return AnyShapeStyle(MarkFlowTheme.baseBackground)
+        }
+
+        return AnyShapeStyle(colorSchemeContrast == .increased ? .regularMaterial : .ultraThinMaterial)
+    }
+
+    private var borderColor: Color {
+        colorSchemeContrast == .increased ? Color.primary.opacity(0.22) : Color.primary.opacity(0.10)
     }
 }
 
