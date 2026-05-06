@@ -100,24 +100,8 @@ enum ExportService {
     }
 
     private static func htmlContent(for document: MarkdownDocument, documents: [MarkdownDocument]) -> String {
-        let body = replacingWikiLinks(in: document.content, documents: documents, extension: "html")
-            .components(separatedBy: .newlines)
-            .map { line in
-                if line.hasPrefix("# ") {
-                    return "<h1>\(inlineHTML(String(line.dropFirst(2))))</h1>"
-                } else if line.hasPrefix("## ") {
-                    return "<h2>\(inlineHTML(String(line.dropFirst(3))))</h2>"
-                } else if line.hasPrefix("### ") {
-                    return "<h3>\(inlineHTML(String(line.dropFirst(4))))</h3>"
-                } else if let image = imageHTML(from: line) {
-                    return image
-                } else if line.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    return ""
-                } else {
-                    return "<p>\(inlineHTML(line))</p>"
-                }
-            }
-            .joined(separator: "\n")
+        let linked = replacingWikiLinks(in: document.content, documents: documents, extension: "html")
+        let body = renderHTMLBody(linked)
 
         return """
         <!doctype html>
@@ -128,9 +112,22 @@ enum ExportService {
           <title>\(escaped(document.title))</title>
           <style>
             body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; line-height: 1.6; max-width: 760px; margin: 48px auto; padding: 0 24px; color: #1f2933; }
-            h1, h2, h3 { line-height: 1.2; color: #111827; }
+            h1, h2, h3, h4, h5, h6 { line-height: 1.2; color: #111827; margin-top: 1.5em; }
             a { color: #2563eb; }
-            code, pre { font-family: "SF Mono", Menlo, monospace; }
+            code { font-family: "SF Mono", Menlo, monospace; background: #f6f8fa; border-radius: 3px; padding: 2px 5px; font-size: 0.9em; }
+            pre { font-family: "SF Mono", Menlo, monospace; background: #f6f8fa; border-radius: 6px; padding: 16px; overflow-x: auto; margin: 1em 0; }
+            pre code { background: none; padding: 0; font-size: 1em; }
+            table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+            th, td { border: 1px solid #d1d5db; padding: 8px 12px; text-align: left; }
+            th { background: #f9fafb; font-weight: 600; }
+            blockquote { border-left: 4px solid #e5e7eb; margin: 1em 0; padding: 0.5em 1em; color: #6b7280; }
+            blockquote p { margin: 0; }
+            ul, ol { padding-left: 1.5em; margin: 0.5em 0; }
+            ul.checklist { list-style: none; padding-left: 0.25em; }
+            ul.checklist li { display: flex; align-items: flex-start; gap: 6px; }
+            img { max-width: 100%; height: auto; display: block; margin: 1em 0; }
+            figure { margin: 1em 0; }
+            figcaption { font-size: 0.875em; color: #6b7280; text-align: center; margin-top: 4px; }
           </style>
         </head>
         <body>
@@ -138,6 +135,176 @@ enum ExportService {
         </body>
         </html>
         """
+    }
+
+    // MARK: - HTML Block Renderer
+
+    private static func renderHTMLBody(_ content: String) -> String {
+        let lines = content.components(separatedBy: .newlines)
+        var html = ""
+        var i = 0
+
+        while i < lines.count {
+            let line = lines[i]
+            let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            // Fenced code block
+            if trimmed.hasPrefix("```") {
+                let lang = String(trimmed.dropFirst(3)).trimmingCharacters(in: .whitespaces)
+                var codeLines: [String] = []
+                i += 1
+                while i < lines.count && !lines[i].trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("```") {
+                    codeLines.append(lines[i])
+                    i += 1
+                }
+                i += 1 // consume closing ```
+                let codeContent = codeLines.map { escaped($0) }.joined(separator: "\n")
+                let langAttr = lang.isEmpty ? "" : " class=\"language-\(escaped(lang))\""
+                html += "<pre><code\(langAttr)>\(codeContent)</code></pre>\n"
+                continue
+            }
+
+            // Headings h1–h6
+            if trimmed.hasPrefix("###### ") {
+                html += "<h6>\(inlineHTML(String(trimmed.dropFirst(7))))</h6>\n"; i += 1; continue
+            }
+            if trimmed.hasPrefix("##### ") {
+                html += "<h5>\(inlineHTML(String(trimmed.dropFirst(6))))</h5>\n"; i += 1; continue
+            }
+            if trimmed.hasPrefix("#### ") {
+                html += "<h4>\(inlineHTML(String(trimmed.dropFirst(5))))</h4>\n"; i += 1; continue
+            }
+            if trimmed.hasPrefix("### ") {
+                html += "<h3>\(inlineHTML(String(trimmed.dropFirst(4))))</h3>\n"; i += 1; continue
+            }
+            if trimmed.hasPrefix("## ") {
+                html += "<h2>\(inlineHTML(String(trimmed.dropFirst(3))))</h2>\n"; i += 1; continue
+            }
+            if trimmed.hasPrefix("# ") {
+                html += "<h1>\(inlineHTML(String(trimmed.dropFirst(2))))</h1>\n"; i += 1; continue
+            }
+
+            // Blockquote
+            if trimmed.hasPrefix("> ") {
+                html += "<blockquote>\n"
+                while i < lines.count && lines[i].trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("> ") {
+                    let inner = String(lines[i].trimmingCharacters(in: .whitespacesAndNewlines).dropFirst(2))
+                    html += "<p>\(inlineHTML(inner))</p>\n"
+                    i += 1
+                }
+                html += "</blockquote>\n"
+                continue
+            }
+
+            // Table (lines starting with |)
+            if trimmed.hasPrefix("|") {
+                var tableLines: [String] = []
+                while i < lines.count && lines[i].trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("|") {
+                    tableLines.append(lines[i])
+                    i += 1
+                }
+                html += renderTable(tableLines)
+                continue
+            }
+
+            // Checklist items (must be checked before unordered list)
+            if trimmed.hasPrefix("- [ ] ") || trimmed.hasPrefix("- [x] ") || trimmed.hasPrefix("- [X] ") {
+                html += "<ul class=\"checklist\">\n"
+                while i < lines.count {
+                    let t = lines[i].trimmingCharacters(in: .whitespacesAndNewlines)
+                    guard t.hasPrefix("- [ ] ") || t.hasPrefix("- [x] ") || t.hasPrefix("- [X] ") else { break }
+                    let checked = t.hasPrefix("- [x]") || t.hasPrefix("- [X]")
+                    let text = String(t.dropFirst(6))
+                    let checkedAttr = checked ? " checked" : ""
+                    html += "<li><input type=\"checkbox\" disabled\(checkedAttr)> \(inlineHTML(text))</li>\n"
+                    i += 1
+                }
+                html += "</ul>\n"
+                continue
+            }
+
+            // Unordered list
+            if trimmed.hasPrefix("- ") || trimmed.hasPrefix("* ") || trimmed.hasPrefix("+ ") {
+                html += "<ul>\n"
+                while i < lines.count {
+                    let t = lines[i].trimmingCharacters(in: .whitespacesAndNewlines)
+                    guard t.hasPrefix("- ") || t.hasPrefix("* ") || t.hasPrefix("+ ") else { break }
+                    html += "<li>\(inlineHTML(String(t.dropFirst(2))))</li>\n"
+                    i += 1
+                }
+                html += "</ul>\n"
+                continue
+            }
+
+            // Ordered list
+            if trimmed.range(of: #"^\d+\. "#, options: .regularExpression) != nil {
+                html += "<ol>\n"
+                while i < lines.count {
+                    let t = lines[i].trimmingCharacters(in: .whitespacesAndNewlines)
+                    guard let range = t.range(of: #"^\d+\. "#, options: .regularExpression) else { break }
+                    html += "<li>\(inlineHTML(String(t[range.upperBound...])))</li>\n"
+                    i += 1
+                }
+                html += "</ol>\n"
+                continue
+            }
+
+            // Standalone image line
+            if let imageTag = imageHTML(from: trimmed) {
+                html += "\(imageTag)\n"
+                i += 1
+                continue
+            }
+
+            // Empty line
+            if trimmed.isEmpty {
+                i += 1
+                continue
+            }
+
+            // Paragraph
+            html += "<p>\(inlineHTML(trimmed))</p>\n"
+            i += 1
+        }
+
+        return html
+    }
+
+    private static func renderTable(_ lines: [String]) -> String {
+        func parseRow(_ line: String) -> [String] {
+            var cells = line.trimmingCharacters(in: .whitespaces).components(separatedBy: "|")
+            if cells.first?.trimmingCharacters(in: .whitespaces).isEmpty == true { cells.removeFirst() }
+            if cells.last?.trimmingCharacters(in: .whitespaces).isEmpty == true { cells.removeLast() }
+            return cells.map { $0.trimmingCharacters(in: .whitespaces) }
+        }
+        func isSeparator(_ line: String) -> Bool {
+            line.trimmingCharacters(in: .whitespaces)
+                .unicodeScalars
+                .allSatisfy { CharacterSet(charactersIn: "-:|. ").union(.init(charactersIn: "|")).contains($0) }
+        }
+
+        guard !lines.isEmpty else { return "" }
+        var html = "<table>\n"
+        html += "<thead>\n<tr>\n"
+        for cell in parseRow(lines[0]) {
+            html += "<th>\(inlineHTML(cell))</th>\n"
+        }
+        html += "</tr>\n</thead>\n"
+
+        let dataLines = lines.dropFirst().filter { !isSeparator($0) }
+        if !dataLines.isEmpty {
+            html += "<tbody>\n"
+            for line in dataLines {
+                html += "<tr>\n"
+                for cell in parseRow(line) {
+                    html += "<td>\(inlineHTML(cell))</td>\n"
+                }
+                html += "</tr>\n"
+            }
+            html += "</tbody>\n"
+        }
+        html += "</table>\n"
+        return html
     }
 
     private static func replacingWikiLinks(in content: String, documents: [MarkdownDocument], extension fileExtension: String) -> String {
@@ -243,28 +410,71 @@ enum ExportService {
             .replacingOccurrences(of: "\"", with: "&quot;")
     }
 
-    private static func inlineHTML(_ value: String) -> String {
-        var result = ""
-        var searchStart = value.startIndex
+    private static func inlineHTML(_ raw: String) -> String {
+        var out = ""
+        var i = raw.startIndex
 
-        while let openText = value[searchStart...].firstIndex(of: "["),
-              let closeText = value[openText...].firstIndex(of: "]") {
-            let openURL = value.index(after: closeText)
-            guard openURL < value.endIndex,
-                  value[openURL] == "(",
-                  let closeURL = value[openURL...].firstIndex(of: ")") else {
-                break
+        while i < raw.endIndex {
+            let remaining = raw[i...]
+
+            // Inline code: `...`
+            if raw[i] == "`" {
+                let codeStart = raw.index(after: i)
+                if codeStart < raw.endIndex, let codeEnd = raw[codeStart...].firstIndex(of: "`") {
+                    out += "<code>\(escaped(String(raw[codeStart..<codeEnd])))</code>"
+                    i = raw.index(after: codeEnd)
+                    continue
+                }
             }
 
-            result += escaped(String(value[searchStart..<openText]))
-            let text = String(value[value.index(after: openText)..<closeText])
-            let url = String(value[value.index(after: openURL)..<closeURL])
-            result += "<a href=\"\(escaped(url))\">\(escaped(text))</a>"
-            searchStart = value.index(after: closeURL)
+            // Bold: **...**
+            if remaining.hasPrefix("**") {
+                let textStart = raw.index(i, offsetBy: 2, limitedBy: raw.endIndex) ?? raw.endIndex
+                if textStart < raw.endIndex, let endRange = raw[textStart...].range(of: "**") {
+                    out += "<strong>\(escaped(String(raw[textStart..<endRange.lowerBound])))</strong>"
+                    i = endRange.upperBound
+                    continue
+                }
+            }
+
+            // Italic: *...*
+            if raw[i] == "*" {
+                let textStart = raw.index(after: i)
+                if textStart < raw.endIndex, let endIdx = raw[textStart...].firstIndex(of: "*") {
+                    out += "<em>\(escaped(String(raw[textStart..<endIdx])))</em>"
+                    i = raw.index(after: endIdx)
+                    continue
+                }
+            }
+
+            // Link: [text](url)
+            if raw[i] == "[" {
+                let afterOpen = raw.index(after: i)
+                if afterOpen < raw.endIndex, let closeText = raw[afterOpen...].firstIndex(of: "]") {
+                    let afterClose = raw.index(after: closeText)
+                    if afterClose < raw.endIndex, raw[afterClose] == "(",
+                       let closeParen = raw[afterClose...].firstIndex(of: ")") {
+                        let text = String(raw[afterOpen..<closeText])
+                        let url = String(raw[raw.index(after: afterClose)..<closeParen])
+                        out += "<a href=\"\(escaped(url))\">\(escaped(text))</a>"
+                        i = raw.index(after: closeParen)
+                        continue
+                    }
+                }
+            }
+
+            // Plain character — escape HTML entities
+            switch raw[i] {
+            case "&": out += "&amp;"
+            case "<": out += "&lt;"
+            case ">": out += "&gt;"
+            case "\"": out += "&quot;"
+            default: out += String(raw[i])
+            }
+            i = raw.index(after: i)
         }
 
-        result += escaped(String(value[searchStart..<value.endIndex]))
-        return result
+        return out
     }
 
     private static func imageHTML(from value: String) -> String? {
