@@ -67,6 +67,14 @@
 - Improved checklist and image accessibility in Markdown preview with explicit labels and values.
 - Added current-location VoiceOver state when moving documents between folders.
 
+### Mayo Mejora — Etapa 8: Editor And Preview Performance
+
+- Debounced Markdown preview parsing so long documents do not reparse on every transient typing update.
+- Added task cancellation for stale preview parse work when newer editor content arrives.
+- Made preview block rendering equatable so unchanged blocks can be skipped more cheaply by SwiftUI.
+- Replaced per-parse UUID list identities with stable item indexes to reduce diff churn in bullet and checklist preview rows.
+- Added parser tests for common technical Markdown fixtures and stable list identities.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

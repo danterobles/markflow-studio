@@ -7,9 +7,13 @@ import SwiftUI
 
 struct MarkdownPreviewView: View {
     let content: String
+    var updateDelay: Duration = .milliseconds(120)
+    @State private var renderedContent = ""
+    @State private var blocks: [MarkdownPreviewBlock] = []
 
-    private var blocks: [MarkdownPreviewBlock] {
-        MarkdownPreviewParser.parse(content)
+    init(content: String, updateDelay: Duration = .milliseconds(120)) {
+        self.content = content
+        self.updateDelay = updateDelay
     }
 
     var body: some View {
@@ -21,6 +25,7 @@ struct MarkdownPreviewView: View {
                 } else {
                     ForEach(Array(blocks.enumerated()), id: \.offset) { _, block in
                         MarkdownPreviewBlockView(block: block)
+                            .equatable()
                     }
                 }
             }
@@ -31,11 +36,31 @@ struct MarkdownPreviewView: View {
         .glassPanel(cornerRadius: 28)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Markdown preview")
+        .task(id: content) {
+            await updateBlocks(for: content)
+        }
+    }
+
+    @MainActor
+    private func updateBlocks(for newContent: String) async {
+        guard renderedContent != newContent else { return }
+
+        if !renderedContent.isEmpty {
+            try? await Task.sleep(for: updateDelay)
+        }
+
+        guard !Task.isCancelled, renderedContent != newContent else { return }
+        blocks = MarkdownPreviewParser.parse(newContent)
+        renderedContent = newContent
     }
 }
 
-private struct MarkdownPreviewBlockView: View {
+private struct MarkdownPreviewBlockView: View, Equatable {
     let block: MarkdownPreviewBlock
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.block == rhs.block
+    }
 
     var body: some View {
         switch block {
@@ -158,7 +183,7 @@ private struct MarkdownInlineText: View {
     }
 }
 
-private enum MarkdownPreviewBlock {
+enum MarkdownPreviewBlock: Equatable {
     case heading(level: Int, text: String)
     case paragraph(String)
     case bulletList([MarkdownListItem])
@@ -168,18 +193,18 @@ private enum MarkdownPreviewBlock {
     case image(altText: String, path: String)
 }
 
-private struct MarkdownListItem: Identifiable {
-    let id = UUID()
+struct MarkdownListItem: Identifiable, Equatable {
+    let id: Int
     let text: String
 }
 
-private struct MarkdownChecklistItem: Identifiable {
-    let id = UUID()
+struct MarkdownChecklistItem: Identifiable, Equatable {
+    let id: Int
     let text: String
     let isChecked: Bool
 }
 
-private enum MarkdownPreviewParser {
+enum MarkdownPreviewParser {
     static func parse(_ content: String) -> [MarkdownPreviewBlock] {
         let lines = content.components(separatedBy: .newlines)
         var blocks: [MarkdownPreviewBlock] = []
@@ -294,7 +319,7 @@ private enum MarkdownPreviewParser {
             let line = lines[index].trimmingCharacters(in: .whitespaces)
             guard isChecklistLine(line) else { break }
             let isChecked = line.hasPrefix("- [x] ") || line.hasPrefix("- [X] ")
-            items.append(MarkdownChecklistItem(text: String(line.dropFirst(6)), isChecked: isChecked))
+            items.append(MarkdownChecklistItem(id: items.count, text: String(line.dropFirst(6)), isChecked: isChecked))
             index += 1
         }
 
@@ -312,7 +337,7 @@ private enum MarkdownPreviewParser {
         while index < lines.count {
             let line = lines[index].trimmingCharacters(in: .whitespaces)
             guard isBulletLine(line), !isChecklistLine(line) else { break }
-            items.append(MarkdownListItem(text: String(line.dropFirst(2))))
+            items.append(MarkdownListItem(id: items.count, text: String(line.dropFirst(2))))
             index += 1
         }
 
