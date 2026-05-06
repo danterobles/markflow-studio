@@ -75,6 +75,15 @@
 - Replaced per-parse UUID list identities with stable item indexes to reduce diff churn in bullet and checklist preview rows.
 - Added parser tests for common technical Markdown fixtures and stable list identities.
 
+### Mayo Mejora — Etapa 9: Document Organization Controls
+
+- Added document sorting by modified date, title, and word count.
+- Added quick filters for all documents, recent documents, unfiled documents, and documents with broken links.
+- Applied the same organization controls to regular and compact document lists.
+- Added searchable folder selection when moving documents so large folder trees are easier to navigate.
+- Added confirmation dialogs before soft-deleting documents from list rows and swipe actions.
+- Added tests for document sort and filter rules.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

@@ -13,9 +13,13 @@ struct DocumentListView: View {
     @Binding var selectedDocumentId: UUID?
     let actions: DocumentActionContext
     @State private var searchText = ""
+    @State private var sortOption: DocumentSortOption = .modified
+    @State private var filterOption: DocumentFilterOption = .all
+    @State private var documentPendingDelete: MarkdownDocument?
 
     private var visibleDocuments: [MarkdownDocument] {
-        DocumentService.search(documents, query: searchText)
+        let filteredDocuments = documents.filter { filterOption.includes($0, links: links) }
+        return sortOption.sort(DocumentService.search(filteredDocuments, query: searchText))
     }
 
     var body: some View {
@@ -50,14 +54,14 @@ struct DocumentListView: View {
                             }
 
                             Button(role: .destructive) {
-                                actions.deleteDocument(document)
+                                documentPendingDelete = document
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
-                                actions.deleteDocument(document)
+                                documentPendingDelete = document
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -86,11 +90,38 @@ struct DocumentListView: View {
         .background(AppBackgroundView())
         .navigationTitle(contextTitle)
         .safeAreaInset(edge: .top, spacing: 0) {
-            if let contextSubtitle {
-                DocumentListContextHeader(title: contextTitle, subtitle: contextSubtitle, documentCount: visibleDocuments.count)
+            VStack(spacing: 0) {
+                if let contextSubtitle {
+                    DocumentListContextHeader(title: contextTitle, subtitle: contextSubtitle, documentCount: visibleDocuments.count)
+                }
+                DocumentOrganizationBar(sortOption: $sortOption, filterOption: $filterOption)
             }
         }
         .searchable(text: $searchText, prompt: "Search title or content")
+        .confirmationDialog(
+            "Move Document to Trash?",
+            isPresented: Binding(
+                get: { documentPendingDelete != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        documentPendingDelete = nil
+                    }
+                }
+            ),
+            titleVisibility: .visible
+        ) {
+            if let documentPendingDelete {
+                Button("Move \"\(documentPendingDelete.title)\" to Trash", role: .destructive) {
+                    actions.deleteDocument(documentPendingDelete)
+                    self.documentPendingDelete = nil
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                documentPendingDelete = nil
+            }
+        } message: {
+            Text("This keeps the document recoverable in the soft-delete model while removing it from active lists.")
+        }
         .tint(MarkFlowTheme.accent)
         .toolbar {
             ToolbarItem {
@@ -109,6 +140,40 @@ struct DocumentListView: View {
 
     private func backlinkCount(for document: MarkdownDocument) -> Int {
         links.filter { $0.targetDocumentId == document.id && !$0.isBroken }.count
+    }
+}
+
+struct DocumentOrganizationBar: View {
+    @Binding var sortOption: DocumentSortOption
+    @Binding var filterOption: DocumentFilterOption
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Picker("Filter", selection: $filterOption) {
+                ForEach(DocumentFilterOption.allCases) { option in
+                    Text(option.title).tag(option)
+                }
+            }
+            .pickerStyle(.segmented)
+
+            Menu {
+                Picker("Sort Documents", selection: $sortOption) {
+                    ForEach(DocumentSortOption.allCases) { option in
+                        Text(option.title).tag(option)
+                    }
+                }
+            } label: {
+                Label(sortOption.title, systemImage: "arrow.up.arrow.down")
+                    .labelStyle(.titleAndIcon)
+            }
+            .menuStyle(.button)
+            .controlSize(.small)
+            .accessibilityLabel("Sort documents")
+            .accessibilityValue(sortOption.title)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(.bar)
     }
 }
 

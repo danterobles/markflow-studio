@@ -160,9 +160,13 @@ private struct DocumentStackView: View {
     @Binding var path: [PhoneRoute]
     let actions: DocumentActionContext
     @State private var searchText = ""
+    @State private var sortOption: DocumentSortOption = .modified
+    @State private var filterOption: DocumentFilterOption = .all
+    @State private var documentPendingDelete: MarkdownDocument?
 
     private var visibleDocuments: [MarkdownDocument] {
-        DocumentService.search(documents, query: searchText)
+        let filteredDocuments = documents.filter { filterOption.includes($0, links: links) }
+        return sortOption.sort(DocumentService.search(filteredDocuments, query: searchText))
     }
 
     var body: some View {
@@ -187,7 +191,7 @@ private struct DocumentStackView: View {
                         .listRowBackground(Color.clear)
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
-                                actions.deleteDocument(document)
+                                documentPendingDelete = document
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -214,7 +218,7 @@ private struct DocumentStackView: View {
                             }
 
                             Button(role: .destructive) {
-                                actions.deleteDocument(document)
+                                documentPendingDelete = document
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -235,9 +239,36 @@ private struct DocumentStackView: View {
         .background(AppBackgroundView())
         .navigationTitle(folderName ?? "All Documents")
         .safeAreaInset(edge: .top, spacing: 0) {
-            CompactBreadcrumbView(folderName: folderName, documentCount: visibleDocuments.count)
+            VStack(spacing: 0) {
+                CompactBreadcrumbView(folderName: folderName, documentCount: visibleDocuments.count)
+                DocumentOrganizationBar(sortOption: $sortOption, filterOption: $filterOption)
+            }
         }
         .searchable(text: $searchText, prompt: "Search title or content")
+        .confirmationDialog(
+            "Move Document to Trash?",
+            isPresented: Binding(
+                get: { documentPendingDelete != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        documentPendingDelete = nil
+                    }
+                }
+            ),
+            titleVisibility: .visible
+        ) {
+            if let documentPendingDelete {
+                Button("Move \"\(documentPendingDelete.title)\" to Trash", role: .destructive) {
+                    actions.deleteDocument(documentPendingDelete)
+                    self.documentPendingDelete = nil
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                documentPendingDelete = nil
+            }
+        } message: {
+            Text("This keeps the document recoverable in the soft-delete model while removing it from active lists.")
+        }
         .tint(MarkFlowTheme.accent)
         .toolbar {
             ToolbarItem {
