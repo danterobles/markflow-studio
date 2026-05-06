@@ -179,7 +179,8 @@ private struct DocumentStackView: View {
                             DocumentCardView(
                                 document: document,
                                 isSelected: selectedDocumentId == document.id,
-                                brokenLinkCount: brokenLinkCount(for: document)
+                                brokenLinkCount: brokenLinkCount(for: document),
+                                backlinkCount: backlinkCount(for: document)
                             )
                         }
                         .listRowSeparator(.hidden)
@@ -251,6 +252,10 @@ private struct DocumentStackView: View {
 
     private func brokenLinkCount(for document: MarkdownDocument) -> Int {
         links.filter { $0.sourceDocumentId == document.id && $0.isBroken }.count
+    }
+
+    private func backlinkCount(for document: MarkdownDocument) -> Int {
+        links.filter { $0.targetDocumentId == document.id && !$0.isBroken }.count
     }
 
     private func addDocumentAndOpen() {

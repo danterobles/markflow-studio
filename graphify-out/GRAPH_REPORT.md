@@ -1,16 +1,16 @@
 # Graph Report - MarkFlow Studio  (2026-05-06)
 
 ## Corpus Check
-- 33 files · ~52,923 words
+- 33 files · ~53,238 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 419 nodes · 579 edges · 21 communities (15 shown, 6 thin omitted)
+- 422 nodes · 583 edges · 21 communities (15 shown, 6 thin omitted)
 - Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 58 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b8307dc0`
+- Built from commit: `b85a012a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -70,7 +70,7 @@
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (29): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, DocumentDetailView, InspectorStatusView, LinkInspectorView (+21 more)
+Nodes (30): View, AppBackgroundView, DesktopAppShellView, DocumentCardView, MetadataPill, BacklinkSectionView, DocumentDetailView, InspectorStatusView (+22 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.07
@@ -78,7 +78,7 @@ Nodes (45): Liquid Glass UI Direction, Workspace Storage Separation, Layered Ada
 
 ### Community 2 - "Community 2"
 Cohesion: 0.05
-Nodes (43): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, MarkFlow Studio 128 Pixel App Icon Variant (+35 more)
+Nodes (41): MarkFlow Studio 128 Pixel App Icon Variant, Circular Blue Teal Gradient Badge, Small Blue Teal MarkFlow Visual Identity, White M With Upward Arrow Symbol, MarkFlow Studio 16 Pixel App Icon Variant, Tiny Circular Blue Teal Gradient Badge, Tiny Blue Teal MarkFlow Visual Identity, Tiny White M With Upward Arrow Symbol (+33 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.08
@@ -92,7 +92,7 @@ Nodes (15): Identifiable, MarkdownChecklistItem, MarkdownInlineText, MarkdownLis
 Cohesion: 0.1
 Nodes (9): Equatable, ContentView, FolderSheet, create, rename, AppFeedback, Kind, error (+1 more)
 
-### Community 6 - "Community 6"
+### Community 7 - "Community 7"
 Cohesion: 0.11
 Nodes (19): CaseIterable, ExportFormat, html, markdown, pdf, MarkdownEditorMode, editor, preview (+11 more)
 
@@ -113,16 +113,16 @@ Cohesion: 0.16
 Nodes (7): ViewModifier, GlassPanelModifier, View, GlassCapsuleStyle, MarkFlowTheme, NoteCardStyle, View
 
 ### Community 14 - "Community 14"
-Cohesion: 0.15
+Cohesion: 0.14
 Nodes (7): Hashable, CompactBreadcrumbView, DocumentStackView, PhoneAppShellView, PhoneRoute, document, documents
 
 ### Community 15 - "Community 15"
-Cohesion: 0.29
-Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings Data Model, Immediate Visual Feedback UX, Separated Workspace Database Assets Exports Config Layout, User Selected Workspace Storage Requirement, App Feedback Model, Feedback Banner View, Workspace Status Card
+Cohesion: 0.2
+Nodes (10): MarkFlow App Background Asset, Blurred Blue Teal Brand Gradient, Soft Abstract Bokeh Shapes, MarkFlow Transparent Icon Asset, Transparent MarkFlow Symbol Variant, White M With Upward Arrow Symbol, White Circular Ring Outline, Circular Blue Teal Gradient Badge (+2 more)
 
 ### Community 16 - "Community 16"
-Cohesion: 0.25
-Nodes (8): MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol, MarkFlow Writer 512 Pixel App Icon Variant, Large Circular Blue Teal Gradient Badge, Large Blue Teal MarkFlow Visual Identity, Large White M With Upward Arrow Symbol
+Cohesion: 0.29
+Nodes (8): Offline First Markdown Knowledge Editor Objective, Workspace Settings Data Model, Immediate Visual Feedback UX, Separated Workspace Database Assets Exports Config Layout, User Selected Workspace Storage Requirement, App Feedback Model, Feedback Banner View, Workspace Status Card
 
 ### Community 18 - "Community 18"
 Cohesion: 0.67
@@ -137,7 +137,7 @@ Nodes (3): Project Architecture Guidance, MarkFlow Studio, Offline-First Markdow
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `FolderTreeItem` connect `Community 9` to `Community 4`?**
-  _High betweenness centrality (0.112) - this node is a cross-community bridge._
+  _High betweenness centrality (0.113) - this node is a cross-community bridge._
 - **Why does `MarkdownFolder` connect `Community 10` to `Community 9`?**
   _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **What connects `create`, `MarkFlowTheme`, `heading` to the rest of the system?**

@@ -21,6 +21,15 @@
 - Added quick Markdown insertion from the editor header for common writing actions.
 - Added Markdown helpers for wiki links (`[[Document Title]]`) and block quotes.
 
+### Mayo Mejora — Etapa 3: Actionable Internal Links And Backlinks
+
+- Split the internal-links inspector into broken links, resolved outgoing links, and backlinks for clearer navigation.
+- Added a summary count for outgoing, backlink, and broken-link states in the document inspector.
+- Made broken links more actionable with clearer missing-target copy and create actions grouped first.
+- Added backlink rows with source document metadata and direct navigation.
+- Added backlink counts to document cards so connected notes are visible from document lists.
+- Kept broken-link badges prioritized on cards while surfacing backlink badges when no broken links need attention.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline
