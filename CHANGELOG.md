@@ -84,6 +84,14 @@
 - Added confirmation dialogs before soft-deleting documents from list rows and swipe actions.
 - Added tests for document sort and filter rules.
 
+### Mayo Mejora — Etapa 10: Writing Assistance
+
+- Added an editor assistance bar with visible word count and autosave status.
+- Added in-document search directly in the Markdown editor surface.
+- Added live match counts and the first matching line so long notes are easier to scan while writing.
+- Added reusable `MarkdownTextMetrics` utilities for word counting and document search metrics.
+- Added tests for word counting, case/diacritic-insensitive matching, and first matching line extraction.
+
 ## 2026-05-04
 
 ### Phase 0: Project Baseline

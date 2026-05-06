@@ -8,6 +8,7 @@ import SwiftUI
 struct MarkdownEditorView: View {
     @Binding var content: String
     @State private var mode: MarkdownEditorMode = .editor
+    @State private var documentSearchText = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -28,6 +29,8 @@ struct MarkdownEditorView: View {
                     }
                 }
             }
+
+            EditorAssistanceBar(content: content, searchText: $documentSearchText)
 
             ZStack(alignment: .bottom) {
                 editorBody
@@ -71,6 +74,88 @@ struct MarkdownEditorView: View {
     private func insert(_ snippet: String) {
         let separator = content.isEmpty || content.hasSuffix("\n") ? "" : "\n\n"
         content += separator + snippet
+    }
+}
+
+private struct EditorAssistanceBar: View {
+    let content: String
+    @Binding var searchText: String
+    @FocusState private var isSearchFocused: Bool
+
+    private var wordCount: Int {
+        MarkdownTextMetrics.wordCount(in: content)
+    }
+
+    private var matchCount: Int {
+        MarkdownTextMetrics.matchCount(in: content, query: searchText)
+    }
+
+    private var matchingLine: String? {
+        MarkdownTextMetrics.firstMatchingLine(in: content, query: searchText)
+    }
+
+    private var hasSearch: Bool {
+        !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 10) {
+                Label("\(wordCount) words", systemImage: "text.word.spacing")
+                    .foregroundStyle(.secondary)
+
+                Label("Autosaved", systemImage: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+
+                Spacer(minLength: 8)
+
+                HStack(spacing: 6) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundStyle(.secondary)
+                        .accessibilityHidden(true)
+                    TextField("Find in document", text: $searchText)
+                        .textFieldStyle(.plain)
+                        .focused($isSearchFocused)
+                        .onSubmit {
+                            isSearchFocused = false
+                        }
+
+                    if hasSearch {
+                        Button {
+                            searchText = ""
+                        } label: {
+                            Label("Clear search", systemImage: "xmark.circle.fill")
+                                .labelStyle(.iconOnly)
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 7)
+                .background(Color.secondary.opacity(0.08), in: Capsule(style: .continuous))
+                .frame(maxWidth: 260)
+            }
+            .font(.caption.weight(.medium))
+
+            if hasSearch {
+                HStack(spacing: 8) {
+                    Label(matchCount == 1 ? "1 match" : "\(matchCount) matches", systemImage: matchCount == 0 ? "magnifyingglass" : "checkmark.circle")
+                        .foregroundStyle(matchCount == 0 ? .orange : MarkFlowTheme.accent)
+
+                    if let matchingLine, !matchingLine.isEmpty {
+                        Text(matchingLine)
+                            .lineLimit(1)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .font(.caption)
+                .accessibilityElement(children: .combine)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .glassPanel(cornerRadius: 18)
     }
 }
 

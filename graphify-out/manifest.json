@@ -23,6 +23,10 @@
     "mtime": 1777919565.589989,
     "hash": "863ca66dc121e1d60263bb31553c54d7"
   },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Utilities/MarkdownTextMetrics.swift": {
+    "mtime": 1778108048.146467,
+    "hash": "d1385cefd9c33fb546b78430caeba31b"
+  },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Utilities/MarkFlowPreviewData.swift": {
     "mtime": 1777922956.1153367,
     "hash": "e5e249a243f1021d832056bb2dea5e69"
@@ -104,8 +108,8 @@
     "hash": "26ae94ce7d10bdff8004a174bf582bb5"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/MarkdownEditorView.swift": {
-    "mtime": 1778105244.281501,
-    "hash": "96b9c1788413d5aa0881c84d79e1c271"
+    "mtime": 1778108057.1591465,
+    "hash": "e6ce84b542dbec7f514b89a0bce0b7f0"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/DocumentOrganizationOptions.swift": {
     "mtime": 1778107757.6078918,
@@ -167,6 +171,10 @@
     "mtime": 1778107172.5570707,
     "hash": "4d3c07ca627720be9c86cca0f84647e0"
   },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow StudioTests/MarkdownTextMetricsTests.swift": {
+    "mtime": 1778108063.4861076,
+    "hash": "e7879e1baef730f673d4b45fb2a1e4e9"
+  },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow StudioTests/WikiLinkServiceTests.swift": {
     "mtime": 1778105823.1654658,
     "hash": "8dfb671217846e86ea244b118f48e246"
@@ -176,8 +184,8 @@
     "hash": "049c434d99e28696cab0e2830ee62889"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/CHANGELOG.md": {
-    "mtime": 1778107808.198396,
-    "hash": "5f5dcd7461c0d83b79fe8980eb1f6b9a"
+    "mtime": 1778108074.0520825,
+    "hash": "2910748bd6ff816a7c848ad1244054f2"
   },
   "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/README.md": {
     "mtime": 1778022406.914242,
