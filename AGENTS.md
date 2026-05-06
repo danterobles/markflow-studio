@@ -32,3 +32,13 @@
 - Target deployment versions are currently 26.4 for iOS, macOS, and visionOS/xrOS; available local simulators are 26.4.1.
 - `SUPPORTED_PLATFORMS` includes visionOS, but local `xcodebuild -showdestinations` reports visionOS 26.4 is not installed; prefer macOS or iOS simulator verification unless visionOS support is explicitly requested.
 - Sandbox is enabled, network access is disabled, and user-selected files are read/write; workspace/file features should use user-granted file access.
+
+## graphify
+
+This project has a graphify knowledge graph at graphify-out/.
+
+Rules:
+- Before answering architecture or codebase questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure
+- If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
+- For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph's EXTRACTED + INFERRED edges instead of scanning files
+- After modifying code files in this session, run `graphify update .` to keep the graph current (AST-only, no API cost)

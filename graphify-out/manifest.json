@@ -1,0 +1,238 @@
+{
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/MarkFlow_StudioApp.swift": {
+    "mtime": 1777935738.3212507,
+    "hash": "6d6c16538f87d16be4f802a969237dbe"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/ContentView.swift": {
+    "mtime": 1777923167.188648,
+    "hash": "69cca701d34ebbaf4ca25d540dbab693"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Models/MarkdownLink.swift": {
+    "mtime": 1777919565.5903118,
+    "hash": "4489e8fe492ede780ff881cc5d4f2bc6"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Models/WorkspaceSettings.swift": {
+    "mtime": 1777919565.590538,
+    "hash": "00161a8be5ce2a347e1cd7ae1e4e9939"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Models/MarkdownDocument.swift": {
+    "mtime": 1777919565.5881245,
+    "hash": "416d65a11d3daef88898f00ba653f9ab"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Models/MarkdownFolder.swift": {
+    "mtime": 1777919565.589989,
+    "hash": "863ca66dc121e1d60263bb31553c54d7"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Utilities/MarkFlowPreviewData.swift": {
+    "mtime": 1777922956.1153367,
+    "hash": "e5e249a243f1021d832056bb2dea5e69"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FolderSidebarView.swift": {
+    "mtime": 1777927087.3798387,
+    "hash": "3cfdbea2fb484ddd573d0a50c78c519b"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/MarkFlowTheme.swift": {
+    "mtime": 1777927062.2790477,
+    "hash": "f59091843cac2c2739dc9e6fb5159dd2"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/DesktopAppShellView.swift": {
+    "mtime": 1777922921.7737942,
+    "hash": "02e06f39eb8bd4202fff6fb5e7bd6b1d"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/MarkdownPreviewView.swift": {
+    "mtime": 1777922596.3387246,
+    "hash": "9738c6e77eb48284595a123fb1ba07a2"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/SplashScreenView.swift": {
+    "mtime": 1778022386.2816734,
+    "hash": "812b6a3e761fc9d5c85198ce2769dd2a"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/AppBackgroundView.swift": {
+    "mtime": 1777927062.2796073,
+    "hash": "13bf3bc16b706f3ac59f1da4c6fe7f21"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/GlassPanelModifier.swift": {
+    "mtime": 1777927055.99283,
+    "hash": "c1b447a296003fd987344585102b3aa6"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/DocumentActionContext.swift": {
+    "mtime": 1777923153.5089962,
+    "hash": "6d951fa79b4dbf4474231463fe3a07c8"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/PhoneAppShellView.swift": {
+    "mtime": 1777934091.6723058,
+    "hash": "9b67f7e0177d7787a5bc6cd3cd362985"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/WorkspaceStatusCard.swift": {
+    "mtime": 1777927087.3793483,
+    "hash": "5bcc712184d5fcc14e41727f0c22ae58"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FolderEditorSheet.swift": {
+    "mtime": 1777920401.2525184,
+    "hash": "528d8be7d3fc9e5afd062ea50f8a1d0b"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/AppFeedback.swift": {
+    "mtime": 1777920187.1111956,
+    "hash": "ab54e6efea83eb377410be5989da4cc1"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FolderActionContext.swift": {
+    "mtime": 1777923153.509389,
+    "hash": "c1e705e96d5abf425831fdc439c565b4"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FloatingToolbarView.swift": {
+    "mtime": 1777927109.1994905,
+    "hash": "06120de012935ca84e66cff79f59471e"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/DocumentCardView.swift": {
+    "mtime": 1777927099.579824,
+    "hash": "6632d8e2d624d38d9f3939fa67210479"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/DocumentDetailView.swift": {
+    "mtime": 1777934091.671979,
+    "hash": "61dd0e7d355f82907aa39d5fac65eb2c"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/FeedbackBannerView.swift": {
+    "mtime": 1777920187.1168218,
+    "hash": "9ea5bd4d6ffd1e1569a1a7badb962ab5"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/MarkdownEditorView.swift": {
+    "mtime": 1777927138.668459,
+    "hash": "09079d0ee31638067d324b7beafadae1"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/MoveDocumentSheet.swift": {
+    "mtime": 1777920401.2529387,
+    "hash": "aeaf83abebe27b7b5f396d7d92850027"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Views/DocumentListView.swift": {
+    "mtime": 1777927109.199815,
+    "hash": "46dd958e2a11c5c2862cac4af27895f9"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Services/WikiLinkService.swift": {
+    "mtime": 1777922885.2181559,
+    "hash": "1e27e5e670e9c4a2fa0be946a369dbc3"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Services/ExportService.swift": {
+    "mtime": 1777923215.6116571,
+    "hash": "e72d2a66ddfeef35a30e416382f10ff7"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Services/FolderService.swift": {
+    "mtime": 1777920473.8954043,
+    "hash": "44d5330ce0fe53ced509c75378899669"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Services/DocumentService.swift": {
+    "mtime": 1777921218.6311445,
+    "hash": "979bc9e191c5a2d3080698ecff30cd0d"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Services/WorkspaceService.swift": {
+    "mtime": 1777919792.665397,
+    "hash": "968c564e5a4166a8ec88c09834eb4147"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/CHANGELOG.md": {
+    "mtime": 1778022406.9150186,
+    "hash": "4165663339098082060746b7767e98ef"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/README.md": {
+    "mtime": 1778022406.914242,
+    "hash": "1584924a145361e6a177d1e698e88b46"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/EXECUTION.md": {
+    "mtime": 1777923314.0228934,
+    "hash": "6b039dae9988b1e681741e171c7fc363"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/AGENTS.md": {
+    "mtime": 1778104014.4434533,
+    "hash": "c0e497779afb9608a827cee9d909a51c"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/07-workspace-spec.md": {
+    "mtime": 1777918070.85921,
+    "hash": "2d8f2667dee5eed3d2785c94ac308553"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/03-data-model.md": {
+    "mtime": 1777917982.385445,
+    "hash": "d02a8316cb8669288cdc28309be204ec"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/redisenio_markdown_app.md": {
+    "mtime": 1777924865.59401,
+    "hash": "e55532537866b685c36f08bf65fcdcec"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/06-internal-linking-spec.md": {
+    "mtime": 1777918049.081679,
+    "hash": "24c87db109f0e7b4f65d4050a394c3be"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/02-functional-requirements.md": {
+    "mtime": 1777917947.3913546,
+    "hash": "7ef12022d45b4a6b597b2d6a11e0d2d1"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/08-backlog.md": {
+    "mtime": 1777918092.1934526,
+    "hash": "0f0784fd95e989f19b32e1efbc2256c5"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/01-product-spec.md": {
+    "mtime": 1777917913.307487,
+    "hash": "8d6d0a8a53d2571b453a6ea3a1a5d065"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/04-ui-guidelines-liquid-glass.md": {
+    "mtime": 1777918007.1403553,
+    "hash": "d4818287e5ba957213cddac8122b0246"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/system_prompt_ui_agent.md": {
+    "mtime": 1777925984.465187,
+    "hash": "8ab90b59b5436ab6970413811b05474d"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/docs/05-export-spec.md": {
+    "mtime": 1777918024.1498995,
+    "hash": "5c4603b8becccdac2876123ad3e8d2cc"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/bg_app.imageset/bg_app.jpg": {
+    "mtime": 1777935529.920837,
+    "hash": "b82caca9f6b6030b53a5cbfadc2f30b0"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_256.jpg": {
+    "mtime": 1778022921.508574,
+    "hash": "22fbbf636c01ce2acff88fbe7265f1fc"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_32 1.jpg": {
+    "mtime": 1778023055.33629,
+    "hash": "6e9a9928f46c9c4342511135183796ca"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_256 1.jpg": {
+    "mtime": 1778022946.202793,
+    "hash": "22fbbf636c01ce2acff88fbe7265f1fc"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_64.jpg": {
+    "mtime": 1778023015.473554,
+    "hash": "897d6a3df9da93aa04d9d7d26faeeaec"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_16.jpg": {
+    "mtime": 1778023079.206784,
+    "hash": "b742940ae995ab0d3c973d62775f1d6d"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_writer_512 1.jpg": {
+    "mtime": 1778022852.497483,
+    "hash": "347a8d04f2d14929a10452900c5de8ca"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio 1.jpg": {
+    "mtime": 1778022845.097132,
+    "hash": "ea5dff866d4c9724cc3a901efcbc1d21"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_writer_512.jpg": {
+    "mtime": 1778022818.192953,
+    "hash": "347a8d04f2d14929a10452900c5de8ca"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_32.jpg": {
+    "mtime": 1778023049.945943,
+    "hash": "6e9a9928f46c9c4342511135183796ca"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio.jpg": {
+    "mtime": 1777935044.045792,
+    "hash": "ea5dff866d4c9724cc3a901efcbc1d21"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/AppIcon.appiconset/markflow_studio_128.jpg": {
+    "mtime": 1778022985.416528,
+    "hash": "6511c0081b504d95323d6efac2f1bb42"
+  },
+  "/Users/danterobles/Desktop/GitHub/md-editor/MarkFlow Studio/MarkFlow Studio/Assets.xcassets/ico_app.imageset/ico_app.png": {
+    "mtime": 1777935348.002678,
+    "hash": "eb6f8dc1e8063615041224f760dc6d4f"
+  }
+}
